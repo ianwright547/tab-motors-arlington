@@ -1,0 +1,232 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens
+
+   Palette: red, white and black, taken from the shop's own logo.
+
+   "ink" is a neutral grey ramp running from near-white to near-black, so the
+   black side of the brand stays genuinely black rather than tinted. "brand" is
+   the logo's red, used only for things the customer should act on.
+
+   Red needs more discipline than most accent colours: it also means "error"
+   everywhere else on the web. So the error states below use a distinctly
+   deeper, browner red than the brand, and brand red is never used for a
+   warning or a failure message. A red button here always means "go".
+
+   The public site is intentionally light-only. It is driven by shop
+   photography, and a single well-tuned light theme is easier to keep
+   consistent than two half-tuned ones. The admin dashboard follows the same
+   theme so there is one visual language to maintain.
+--------------------------------------------------------------------------- */
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-barlow), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Action / brand — the logo red.
+     600 is the button fill: white text on it clears 5.4:1, comfortably past
+     AA. 700 is the text-on-white red at 7.1:1. Anything lighter than 500 is
+     for fills and borders only, never for text. */
+  --color-brand-50: #fef2f2;
+  --color-brand-100: #fde3e3;
+  --color-brand-200: #fbc9c9;
+  --color-brand-300: #f79e9e;
+  --color-brand-400: #f06a6a;
+  --color-brand-500: #e5303a;
+  --color-brand-600: #d01f26;
+  --color-brand-700: #ae1b21;
+  --color-brand-800: #8e181c;
+  --color-brand-900: #741718;
+
+  /* Structure / text — a true neutral, so "black" reads as black. */
+  --color-ink-50: #f7f7f7;
+  --color-ink-100: #ededed;
+  --color-ink-200: #dcdcdc;
+  --color-ink-300: #bdbdbd;
+  --color-ink-400: #949494;
+  --color-ink-500: #6e6e6e;
+  --color-ink-600: #525252;
+  --color-ink-700: #3d3d3d;
+  --color-ink-800: #262626;
+  --color-ink-900: #171717;
+  --color-ink-950: #0a0a0a;
+
+  /* Status */
+  --color-good-50: #f0fdf4;
+  --color-good-100: #dcfce7;
+  --color-good-600: #16a34a;
+  --color-good-700: #15803d;
+  --color-good-800: #166534;
+  --color-warn-50: #fffbeb;
+  --color-warn-100: #fef3c7;
+  --color-warn-700: #a16207;
+  /* Errors deliberately sit in burgundy rather than the brand's pure red.
+     With a red brand, a plain red error message is indistinguishable from a
+     call to action. Pulling errors toward magenta keeps "something went wrong"
+     visually separate from "press this". */
+  --color-bad-50: #fdf2f5;
+  --color-bad-100: #fbdae3;
+  --color-bad-600: #a11043;
+  --color-bad-700: #861038;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+
+  --shadow-card: 0 1px 2px 0 rgb(12 15 18 / 0.05), 0 1px 3px 0 rgb(12 15 18 / 0.06);
+  --shadow-lift: 0 4px 6px -2px rgb(12 15 18 / 0.06), 0 12px 20px -4px rgb(12 15 18 / 0.12);
+}
+
+@layer base {
+  * {
+    /* Anything that scrolls should not drag the page sideways with it. */
+    min-width: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Anchor links must not land underneath the sticky header. */
+    scroll-padding-top: 7rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: white;
+    color: var(--color-ink-800);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* Never allow the page itself to scroll horizontally. Wide children
+       (tables, code) get their own overflow container instead. */
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    /* Headings inherit their colour rather than pinning it to a dark ink.
+       Pinning it meant every heading inside a dark section rendered near-black
+       on near-black unless it remembered to override — and a utility class
+       can't reliably beat a base rule anyway, since which one wins depends on
+       stylesheet order rather than on the order you wrote the classes. */
+    color: inherit;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* A single visible focus treatment everywhere, including in the dark hero. */
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* iOS zooms the page when a focused input's text is under 16px. */
+  input,
+  select,
+  textarea {
+    font-size: max(16px, 1rem);
+    font-family: inherit;
+  }
+
+  img,
+  svg,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@utility container-page {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 78rem;
+  padding-inline: 1.25rem;
+  @media (min-width: 768px) {
+    padding-inline: 2rem;
+  }
+}
+
+/* Small uppercase label used above section headings.
+
+   Deliberately sets no colour: pair it with an explicit text class
+   (text-brand-700 on light, text-brand-400 on dark). A colour here would
+   collide with those utilities, and which one won would depend on stylesheet
+   order. */
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Scroll-driven reveal, used by <Reveal>.
+
+   Everything sits inside @supports and a reduced-motion guard, so the default
+   state of any element is fully visible. Content is never hidden waiting for
+   something to un-hide it — no script, no observer, no failure mode where the
+   page renders blank. Browsers without scroll-driven animation support just get
+   a static page, which is a perfectly good page. */
+@keyframes reveal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover var(--reveal-end, 22%);
+    }
+  }
+}
+
+/* Darkening wash over a photo so text sits on it legibly.
+
+   Two stacked gradients rather than a flat tint: the vertical one anchors the
+   bottom edge, the horizontal one keeps the left column dark where the copy
+   lives while letting the right side of the photograph stay visible. A single
+   flat overlay dark enough for text would flatten the picture entirely. */
+@utility photo-scrim {
+  background-image:
+    linear-gradient(to top, rgb(12 15 18 / 0.92) 0%, rgb(12 15 18 / 0.55) 45%, rgb(12 15 18 / 0.3) 100%),
+    linear-gradient(to right, rgb(12 15 18 / 0.9) 0%, rgb(12 15 18 / 0.6) 45%, rgb(12 15 18 / 0.15) 100%);
+}
+
+/* Diagonal hatch, used as a thin accent band under the hero. */
+@utility hazard-stripe {
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--color-brand-500) 0 0.75rem,
+    var(--color-ink-900) 0.75rem 1.5rem
+  );
+}
