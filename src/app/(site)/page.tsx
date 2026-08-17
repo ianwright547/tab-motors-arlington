@@ -32,14 +32,14 @@ import { telHref } from "@/lib/format";
 const LEAD_SERVICE_SLUGS = [
   "virginia-state-inspection",
   "brake-repair",
-  "check-engine-light-diagnostics",
+  "engine-diagnostics",
 ];
 
 export default function HomePage() {
   const hours = formatHoursSummary();
   const leadServices = LEAD_SERVICE_SLUGS.map(
-    (slug) => services.find((service) => service.slug === slug)!,
-  );
+    (slug) => services.find((service) => service.slug === slug),
+  ).filter((service): service is (typeof services)[number] => Boolean(service));
   const otherServices = services.filter(
     (service) => !LEAD_SERVICE_SLUGS.includes(service.slug),
   );

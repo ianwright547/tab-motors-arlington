@@ -1,4 +1,5 @@
 import { services } from "@/lib/services";
+import { ratingValue, reviewCount, reviews } from "@/lib/reviews";
 import { openingHoursSpecification, site } from "@/lib/site";
 
 /**
@@ -33,6 +34,20 @@ export function LocalBusinessSchema() {
     },
     openingHoursSpecification: openingHoursSpecification(),
     areaServed: site.serviceArea.map((area) => ({ "@type": "Place", name: area })),
+    // Real, verifiable Google reviews carried over from the SEO build — quoted
+    // word-for-word, never invented.
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue,
+      reviewCount,
+      bestRating: "5",
+    },
+    review: reviews.map((r) => ({
+      "@type": "Review",
+      author: { "@type": "Person", name: r.author },
+      reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+      reviewBody: r.text,
+    })),
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Auto repair services",

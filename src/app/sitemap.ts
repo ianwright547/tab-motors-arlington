@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 import { services } from "@/lib/services";
+import { areas } from "@/lib/areas";
+import { posts } from "@/lib/blog";
 import { site } from "@/lib/site";
 
 /**
@@ -30,6 +32,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       // The Virginia inspection page targets the highest-intent local search
       // the shop has, so it gets the strongest priority of the service pages.
       priority: service.slug === "virginia-state-inspection" ? 0.9 : 0.7,
+    })),
+    {
+      url: `${site.url}/service-areas`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    ...areas.map((area) => ({
+      url: `${site.url}/service-areas/${area.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: area.slug === "arlington" ? 0.8 : 0.6,
+    })),
+    {
+      url: `${site.url}/blog`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.6,
+    },
+    ...posts.map((post) => ({
+      url: `${site.url}/blog/${post.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
     })),
     {
       url: `${site.url}/about`,

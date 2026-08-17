@@ -230,3 +230,57 @@
     var(--color-ink-900) 0.75rem 1.5rem
   );
 }
+
+/* ---------------------------------------------------------------------------
+   .prose-shop — styles our ported SEO article HTML (service / area / blog
+   body copy) to match the site's design. No typography plugin; kept explicit.
+--------------------------------------------------------------------------- */
+.prose-shop {
+  color: var(--color-ink-700);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+.prose-shop > * + * { margin-top: 1.1em; }
+.prose-shop h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  font-size: 1.6rem;
+  color: var(--color-ink-900);
+  margin-top: 2em;
+}
+.prose-shop h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--color-ink-900);
+  margin-top: 1.6em;
+}
+.prose-shop p { color: var(--color-ink-700); }
+.prose-shop strong { color: var(--color-ink-900); font-weight: 700; }
+.prose-shop a {
+  color: var(--color-brand-700);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prose-shop a:hover { color: var(--color-brand-800); }
+.prose-shop ul { list-style: none; margin-top: 1.1em; display: grid; gap: 0.6rem; }
+.prose-shop ul li {
+  position: relative;
+  padding-left: 1.6rem;
+  color: var(--color-ink-700);
+}
+.prose-shop ul li::before {
+  content: "";
+  position: absolute;
+  left: 0.15rem;
+  top: 0.62em;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: var(--color-brand-500);
+}
+.prose-shop ol { list-style: decimal; padding-left: 1.3rem; margin-top: 1.1em; display: grid; gap: 0.5rem; }

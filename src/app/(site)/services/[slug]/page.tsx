@@ -23,11 +23,10 @@ export async function generateMetadata({
   const service = getService(slug);
   if (!service) return {};
 
+  // Our SEO title + description, preserved verbatim from the SEO build.
   return {
-    // Locality in the title is what makes these pages rank — nobody searches
-    // "brake repair", they search "brake repair arlington va".
-    title: `${service.name} in Arlington, VA`,
-    description: `${service.blurb} AAA Approved auto repair at ${site.address.street}, Arlington VA. Free quotes.`,
+    title: service.metaTitle,
+    description: service.metaDescription,
     alternates: { canonical: `/services/${service.slug}` },
   };
 }
@@ -39,12 +38,29 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
   const related = otherServices(service.slug, 6);
 
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: service.faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
   return (
     <>
+      {service.faq.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        />
+      )}
+
       <PageHero
         eyebrow="Service"
-        title={`${service.name} in Arlington, VA`}
-        intro={service.intro}
+        title={service.h1}
+        intro={service.heroText}
         breadcrumbs={[
           { label: "Services", href: "/services" },
           { label: service.name },
@@ -53,41 +69,31 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
       <div className="container-page grid gap-10 py-14 md:py-16 lg:grid-cols-[1.5fr_1fr] lg:gap-14">
         <div>
+          {/* What you get — our service highlights */}
           <section>
             <h2 className="font-display text-2xl font-bold uppercase tracking-tight">
-              Signs you might need this
+              What you get
             </h2>
             <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-              {service.symptoms.map((symptom) => (
+              {service.features.map((feat) => (
                 <li
-                  key={symptom}
+                  key={feat}
                   className="flex items-start gap-2.5 rounded-lg border border-ink-200 bg-white p-3.5"
                 >
-                  <ShieldCheck className="mt-0.5 size-4.5 shrink-0 text-brand-600" aria-hidden />
-                  <span className="text-[0.9375rem] text-ink-700">{symptom}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-4 text-ink-600">
-              Recognise any of these? Send us the details and we&apos;ll tell you what&apos;s
-              likely going on and what it costs to put right.
-            </p>
-          </section>
-
-          <section className="mt-12">
-            <h2 className="font-display text-2xl font-bold uppercase tracking-tight">
-              What we actually do
-            </h2>
-            <ul className="mt-5 space-y-3">
-              {service.whatWeDo.map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <Check className="mt-1 size-4.5 shrink-0 text-good-600" strokeWidth={3} aria-hidden />
-                  <span className="text-[0.9375rem] leading-relaxed text-ink-700">{item}</span>
+                  <Check className="mt-0.5 size-4.5 shrink-0 text-good-600" strokeWidth={3} aria-hidden />
+                  <span className="text-[0.9375rem] text-ink-700">{feat}</span>
                 </li>
               ))}
             </ul>
           </section>
 
+          {/* Our SEO educational article, styled in his design */}
+          <article
+            className="prose-shop mt-12"
+            dangerouslySetInnerHTML={{ __html: service.bodyHtml }}
+          />
+
+          {/* What it costs — his trust cards, payment-plans wording */}
           <section className="mt-12">
             <h2 className="font-display text-2xl font-bold uppercase tracking-tight">
               What it costs
@@ -115,8 +121,6 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 <h3 className="mt-2 text-sm font-bold text-ink-900">Backed for a year</h3>
                 <p className="mt-1 text-sm text-ink-700">{site.warranty.label}.</p>
               </div>
-              {/* Whether the customer can pay decides plenty of four-figure
-                  repairs, so it belongs next to the price, not buried. */}
               <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
                 <CreditCard className="size-5 text-ink-700" aria-hidden />
                 <h3 className="mt-2 text-sm font-bold text-ink-900">Payment plans available</h3>
@@ -126,6 +130,23 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               </div>
             </div>
           </section>
+
+          {/* FAQ — our SEO Q&A */}
+          {service.faq.length > 0 && (
+            <section className="mt-12">
+              <h2 className="font-display text-2xl font-bold uppercase tracking-tight">
+                Frequently asked questions
+              </h2>
+              <dl className="mt-5 divide-y divide-ink-200 border-y border-ink-200">
+                {service.faq.map((f) => (
+                  <div key={f.q} className="py-5">
+                    <dt className="font-semibold text-ink-900">{f.q}</dt>
+                    <dd className="mt-2 leading-relaxed text-ink-600">{f.a}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+          )}
 
           <section className="mt-12">
             <h2 className="font-display text-2xl font-bold uppercase tracking-tight">
@@ -190,8 +211,6 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               <br />
               {site.address.city}, {site.address.state} {site.address.zip}
             </p>
-            {/* Read from the shared config — hours were hardcoded here once and
-                silently went stale the moment the real ones came in. */}
             <dl className="mt-3 space-y-1 text-sm">
               {formatHoursSummary().map((entry) => (
                 <div key={entry.label} className="flex gap-3">
@@ -212,10 +231,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         </aside>
       </div>
 
-      <QuoteCta
-        heading={`Need ${service.name.toLowerCase()}?`}
-        serviceSlug={service.slug}
-      />
+      <QuoteCta heading={`Need ${service.name.toLowerCase()}?`} serviceSlug={service.slug} />
     </>
   );
 }

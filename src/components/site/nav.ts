@@ -4,7 +4,8 @@
  */
 export const navLinks = [
   { label: "Services", href: "/services" },
-  { label: "VA Inspection", href: "/services/virginia-state-inspection" },
+  { label: "Service Areas", href: "/service-areas" },
+  { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
   { label: "Reviews", href: "/reviews" },
   { label: "Contact", href: "/contact" },
