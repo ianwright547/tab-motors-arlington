@@ -142,8 +142,8 @@ export default function HomePage() {
           />
           <TrustItem
             icon={CreditCard}
-            title="Financing available"
-            body="Spread the cost of a bigger repair. Options exist without established credit."
+            title="Payment plans available"
+            body="Spread the cost of a bigger repair. Ask us about a plan that works for you."
           />
         </div>
       </section>

@@ -139,9 +139,10 @@ export const site = {
    */
   financing: {
     available: true,
-    provider: "Snap Finance",
-    blurb: "Financing available in the shop, including options for customers without established credit. Subject to approval.",
-    short: "Financing available",
+    /** Per the owner: advertise this only as "payment plans available".
+     *  Do not name a provider or use the word "financing" anywhere public-facing. */
+    blurb: "Payment plans available in the shop for larger repairs, including options for customers still building credit. Subject to approval.",
+    short: "Payment plans available",
   },
 
   /**

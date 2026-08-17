@@ -119,7 +119,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                   repairs, so it belongs next to the price, not buried. */}
               <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
                 <CreditCard className="size-5 text-ink-700" aria-hidden />
-                <h3 className="mt-2 text-sm font-bold text-ink-900">Financing available</h3>
+                <h3 className="mt-2 text-sm font-bold text-ink-900">Payment plans available</h3>
                 <p className="mt-1 text-sm text-ink-700">
                   Spread the cost of a bigger job. Ask us in the shop.
                 </p>

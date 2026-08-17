@@ -110,7 +110,7 @@ export default function ContactPage() {
             </div>
             <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
               <CreditCard className="size-5 text-ink-700" aria-hidden />
-              <h2 className="mt-2 text-sm font-bold text-ink-900">Financing available</h2>
+              <h2 className="mt-2 text-sm font-bold text-ink-900">Payment plans available</h2>
               <p className="mt-1 text-sm text-ink-700">{site.financing.blurb}</p>
             </div>
           </div>
