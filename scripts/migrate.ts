@@ -24,15 +24,12 @@ async function main() {
     return;
   }
 
-  const { PGlite } = await import("@electric-sql/pglite");
-  const { drizzle } = await import("drizzle-orm/pglite");
-  const { migrate } = await import("drizzle-orm/pglite/migrator");
-
-  const client = new PGlite(".pglite");
-  const db = drizzle(client);
-  await migrate(db, { migrationsFolder: "./drizzle" });
-  await client.close();
-  console.log("Migrations applied to local PGlite database (./.pglite).");
+  // No DATABASE_URL (e.g. a Vercel build before the database is wired, or a
+  // preview build). Skip cleanly rather than failing the build — production
+  // always has DATABASE_URL set, and local dev migrates PGlite on first use in
+  // src/lib/db/index.ts. Running PGlite here would try to write to the build
+  // sandbox and is pointless, so we simply no-op.
+  console.log("No DATABASE_URL set — skipping migration (build continues).");
 }
 
 main().catch((error) => {
