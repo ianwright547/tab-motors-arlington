@@ -79,10 +79,12 @@ export default function HomePage() {
               </span>
             </div>
 
-            <h1 className="mt-7 font-display text-5xl font-bold uppercase leading-[0.9] tracking-[-0.02em] text-white sm:text-6xl lg:text-7xl">
-              Straight answers.
-              <br />
-              <span className="text-brand-500">Honest repairs.</span>
+            <p className="mt-7 font-display text-sm font-bold uppercase tracking-[0.18em] text-brand-300">
+              Straight answers. Honest repairs.
+            </p>
+            {/* Our SEO H1, preserved verbatim from the SEO build. */}
+            <h1 className="mt-3 font-display text-5xl font-bold uppercase leading-[0.9] tracking-[-0.02em] text-white sm:text-6xl lg:text-7xl">
+              Auto repair in <span className="text-brand-500">Arlington, VA</span>.
             </h1>
 
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-200 sm:text-xl">
