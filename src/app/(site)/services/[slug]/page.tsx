@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowRight, BadgeCheck, Check, CreditCard, Phone, ShieldCheck } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { QuoteCta } from "@/components/site/QuoteCta";
+import { BlogTeasers } from "@/components/site/BlogTeasers";
 import { ButtonAnchor, ButtonLink } from "@/components/ui/Button";
 import { getService, otherServices, services } from "@/lib/services";
 import { formatHoursSummary, site } from "@/lib/site";
@@ -230,6 +231,8 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           </div>
         </aside>
       </div>
+
+      <BlogTeasers heading="More from our blog" className="border-t border-ink-200" />
 
       <QuoteCta heading={`Need ${service.name.toLowerCase()}?`} serviceSlug={service.slug} />
     </>

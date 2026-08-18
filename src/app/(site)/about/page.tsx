@@ -4,6 +4,10 @@ import { BadgeCheck, Car, ClipboardCheck, Receipt, ShieldCheck, Wrench } from "l
 import { PageHero } from "@/components/site/PageHero";
 import { QuoteCta } from "@/components/site/QuoteCta";
 import { ShopPhoto } from "@/components/site/ShopPhoto";
+import { ReviewsSection } from "@/components/site/ReviewsSection";
+import { FaqSection } from "@/components/site/FaqSection";
+import { BlogTeasers } from "@/components/site/BlogTeasers";
+import { generalFaq } from "@/lib/faq";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -143,6 +147,12 @@ export default function AboutPage() {
           </p>
         </div>
       </section>
+
+      <ReviewsSection count={6} />
+
+      <FaqSection items={generalFaq} heading="Questions we hear a lot" withSchema={false} />
+
+      <BlogTeasers className="border-t border-ink-200" />
 
       <QuoteCta />
     </>

@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { QuoteCta } from "@/components/site/QuoteCta";
+import { FaqSection } from "@/components/site/FaqSection";
 import { getPost, otherPosts, posts } from "@/lib/blog";
+import { generalFaq } from "@/lib/faq";
 import { site } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -110,6 +112,13 @@ export default async function BlogPostPage({
           )}
         </aside>
       </div>
+
+      <FaqSection
+        items={generalFaq}
+        heading="Good to know before you come in"
+        className="border-t border-ink-200"
+        withSchema={false}
+      />
 
       <QuoteCta heading="Rather have us take a look?" />
     </>

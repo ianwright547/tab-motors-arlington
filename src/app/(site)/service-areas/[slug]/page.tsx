@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowRight, MapPin, Phone, ShieldCheck, Star } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { QuoteCta } from "@/components/site/QuoteCta";
+import { BlogTeasers } from "@/components/site/BlogTeasers";
 import { ButtonAnchor, ButtonLink } from "@/components/ui/Button";
 import { areas, getArea } from "@/lib/areas";
 import { services } from "@/lib/services";
@@ -153,6 +154,8 @@ export default async function ServiceAreaPage({
           </div>
         </aside>
       </div>
+
+      <BlogTeasers heading="Car care, explained" className="border-t border-ink-200" />
 
       <QuoteCta heading={`Auto repair for ${area.name}?`} />
     </>

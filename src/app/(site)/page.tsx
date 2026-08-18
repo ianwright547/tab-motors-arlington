@@ -8,11 +8,9 @@ import {
   Clock,
   CreditCard,
   MapPin,
-  MessageSquareQuote,
   Phone,
   Receipt,
   ShieldCheck,
-  Star,
   Wrench,
 } from "lucide-react";
 import { ButtonAnchor, ButtonLink } from "@/components/ui/Button";
@@ -20,7 +18,11 @@ import { ShopPhoto } from "@/components/site/ShopPhoto";
 import { IconPlate } from "@/components/site/IconPlate";
 import { Reveal } from "@/components/site/Reveal";
 import { LocalBusinessSchema } from "@/components/site/StructuredData";
+import { ReviewsSection } from "@/components/site/ReviewsSection";
+import { BlogTeasers } from "@/components/site/BlogTeasers";
+import { FaqSection } from "@/components/site/FaqSection";
 import { services } from "@/lib/services";
+import { generalFaq } from "@/lib/faq";
 import { formatHoursSummary, site } from "@/lib/site";
 import { telHref } from "@/lib/format";
 
@@ -365,44 +367,13 @@ export default function HomePage() {
       </section>
 
       {/* ------------------------------------------------------------ Reviews */}
-      <section id="reviews" className="border-y border-ink-200 bg-ink-50 py-20 md:py-24">
-        <div className="container-page">
-          <Reveal>
-            <div className="max-w-2xl">
-              <p className="eyebrow text-brand-700">Reviews</p>
-              <h2 className="mt-3 font-display text-4xl font-bold uppercase leading-[0.95] tracking-[-0.02em] sm:text-5xl">
-                What customers say
-              </h2>
-            </div>
+      <ReviewsSection count={6} />
 
-            {/*
-              Intentionally empty until real reviews exist. Writing plausible
-              testimonials would mean inventing quotes and attributing them to
-              customers who never said them.
-            */}
-            <div className="mt-9 rounded-2xl border border-dashed border-ink-300 bg-white p-10 text-center">
-              <MessageSquareQuote className="mx-auto size-9 text-ink-400" aria-hidden />
-              <h3 className="mt-4 font-display text-2xl font-semibold">
-                Real reviews go here, not invented ones
-              </h3>
-              <p className="mx-auto mt-3 max-w-xl leading-relaxed text-ink-600">
-                This section is waiting on the shop&apos;s Google Business Profile. Once
-                it&apos;s live, genuine customer reviews appear here with a link to leave your
-                own. We&apos;re not putting made-up testimonials on the site.
-              </p>
-              <p className="mt-5">
-                <Link
-                  href="/reviews"
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 underline underline-offset-4"
-                >
-                  <Star className="size-4" aria-hidden />
-                  More about our reviews
-                </Link>
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      {/* --------------------------------------------------------- From the blog */}
+      <BlogTeasers />
+
+      {/* -------------------------------------------------------------- FAQ */}
+      <FaqSection items={generalFaq} heading="Questions Arlington drivers ask us" />
 
       {/* ------------------------------------------------------------ Contact */}
       <section id="contact" className="container-page py-20 md:py-28">

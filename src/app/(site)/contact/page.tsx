@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { BadgeCheck, Clock, CreditCard, MapPin, Phone, ShieldCheck } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { ButtonAnchor, ButtonLink } from "@/components/ui/Button";
+import { FaqSection } from "@/components/site/FaqSection";
+import { BlogTeasers } from "@/components/site/BlogTeasers";
+import { generalFaq } from "@/lib/faq";
 import { formatHoursSummary, site } from "@/lib/site";
 import { telHref } from "@/lib/format";
 
@@ -165,6 +168,15 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
+
+      <FaqSection
+        items={generalFaq}
+        heading="Before you head over"
+        className="border-t border-ink-200"
+        withSchema={false}
+      />
+
+      <BlogTeasers />
 
       <section className="container-page pb-14 md:pb-16">
         <p className="max-w-3xl text-sm leading-relaxed text-ink-500">
