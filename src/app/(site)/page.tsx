@@ -20,9 +20,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { LocalBusinessSchema } from "@/components/site/StructuredData";
 import { ReviewsSection } from "@/components/site/ReviewsSection";
 import { BlogTeasers } from "@/components/site/BlogTeasers";
-import { FaqSection } from "@/components/site/FaqSection";
 import { services } from "@/lib/services";
-import { generalFaq } from "@/lib/faq";
 import { formatHoursSummary, site } from "@/lib/site";
 import { telHref } from "@/lib/format";
 
@@ -366,14 +364,52 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ------------------------------------------------------------ Gallery */}
+      <section className="border-t border-ink-200 bg-white py-20 md:py-24">
+        <div className="container-page">
+          <p className="eyebrow text-brand-700">Inside the shop</p>
+          <h2 className="mt-3 max-w-2xl font-display text-4xl font-bold uppercase leading-[0.98] tracking-tight sm:text-5xl">
+            A real shop on Langston Blvd
+          </h2>
+          <div className="mt-9 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+            <ShopPhoto
+              src="/images/shop-exterior.jpg"
+              alt="TAB Motors shop and Exxon station on Langston Blvd in Arlington"
+              className="col-span-2 aspect-[4/3] md:row-span-2 md:aspect-auto"
+            />
+            <ShopPhoto
+              src="/images/inspection-lift.jpg"
+              alt="A vehicle up on the lift for a full inspection"
+              className="aspect-[4/3]"
+            />
+            <ShopPhoto
+              src="/images/porsche-service.jpg"
+              alt="European and luxury vehicle service in the bay"
+              className="aspect-[4/3]"
+            />
+            <ShopPhoto
+              src="/images/shop-interior.jpg"
+              alt="Inside the TAB Motors service bays"
+              className="aspect-[4/3]"
+            />
+            <ShopPhoto
+              src="/images/customer-cars.jpg"
+              alt="Customer vehicles of all makes at the shop"
+              className="aspect-[4/3]"
+            />
+          </div>
+          <p className="mt-5 max-w-2xl text-ink-600">
+            Free air, free coffee, and an AAA-approved team that works on everything from daily
+            commuters to European and electric vehicles.
+          </p>
+        </div>
+      </section>
+
       {/* ------------------------------------------------------------ Reviews */}
       <ReviewsSection count={6} />
 
       {/* --------------------------------------------------------- From the blog */}
       <BlogTeasers />
-
-      {/* -------------------------------------------------------------- FAQ */}
-      <FaqSection items={generalFaq} heading="Questions Arlington drivers ask us" />
 
       {/* ------------------------------------------------------------ Contact */}
       <section id="contact" className="container-page py-20 md:py-28">
