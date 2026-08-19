@@ -23,7 +23,7 @@ const barlowCondensed = Barlow_Condensed({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} | AAA Approved Auto Repair in Arlington, VA`,
+    default: `${site.name} | Auto Repair, Inspection & Tires in Arlington, VA`,
     template: `%s | ${site.name}`,
   },
   description: site.description,
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: site.url,
     siteName: site.name,
-    title: `${site.name} | AAA Approved Auto Repair`,
+    title: site.name,
     description: site.description,
   },
   twitter: {

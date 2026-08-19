@@ -80,6 +80,79 @@ const INK_SOFT = "#949494";
 const INK_TEXT = "#dcdcdc";
 const BRAND = "#e5303a";
 
+/**
+ * Logo-forward share image: the badge, big and centred on the shop's dark
+ * brand field, with the phone and domain along the bottom. Used as the default
+ * card the whole site inherits — what shows when the link is texted.
+ */
+export async function renderLogoOg() {
+  const logo = await loadLogo();
+
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: INK,
+          position: "relative",
+        }}
+      >
+        {logo ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={logo} width={680} height={487} alt="" style={{ display: "flex" }} />
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              fontFamily: "Display",
+              fontSize: 128,
+              fontWeight: 700,
+              color: "#ffffff",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            TAB MOTORS
+          </div>
+        )}
+
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            marginTop: 8,
+            fontSize: 26,
+            fontWeight: 700,
+            color: INK_TEXT,
+            letterSpacing: "0.01em",
+          }}
+        >
+          {site.phone.display}
+          <span style={{ display: "flex", color: BRAND, margin: "0 14px" }}>·</span>
+          tabmotorsarlington.com
+        </div>
+
+        <div
+          style={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            bottom: 0,
+            height: 16,
+            backgroundColor: BRAND,
+            display: "flex",
+          }}
+        />
+      </div>
+    ),
+    { ...OG_SIZE },
+  );
+}
+
 export async function renderOgImage({
   eyebrow,
   title,
