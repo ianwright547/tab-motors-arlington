@@ -12,7 +12,7 @@ import { telHref } from "@/lib/format";
  */
 export function MobileCallBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-ink-800 bg-ink-950/95 backdrop-blur md:hidden print:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-ink-800 bg-ink-950/95 backdrop-blur lg:hidden print:hidden">
       <div className="grid grid-cols-2 gap-2 p-2.5 pb-[max(0.625rem,env(safe-area-inset-bottom))]">
         <a
           href={telHref(site.phone.e164)}
@@ -37,5 +37,5 @@ export function MobileCallBar() {
  * at the end of the page body, mobile only.
  */
 export function MobileCallBarSpacer() {
-  return <div aria-hidden className="h-20 md:hidden" />;
+  return <div aria-hidden className="h-20 lg:hidden" />;
 }

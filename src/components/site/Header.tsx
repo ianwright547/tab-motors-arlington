@@ -33,8 +33,9 @@ export function Header() {
   const closeMenu = () => setMenuOpen(false);
 
   return (
+    <>
     <header className="sticky top-0 z-50 border-b border-white/10 bg-ink-950/95 backdrop-blur supports-[backdrop-filter]:bg-ink-950/85">
-      <div className="container-page flex h-20 items-center justify-between gap-4 md:h-24">
+      <div className="container-page flex h-20 items-center justify-between gap-4 lg:h-24">
         <Logo />
 
         <nav aria-label="Main" className="hidden items-center gap-0.5 lg:flex">
@@ -86,7 +87,7 @@ export function Header() {
           )}
         </nav>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <a
             href={telHref(site.phone.e164)}
             className="flex items-center gap-2 rounded-md px-2 py-1.5 text-white transition-colors hover:bg-white/10"
@@ -115,9 +116,10 @@ export function Header() {
       {/* Thin brand band. Reads as shop signage and separates the dark header
           from whatever section follows it. */}
       <div aria-hidden className="hazard-stripe h-1 opacity-90" />
+      </header>
 
       {menuOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden">
+        <div className="fixed inset-0 z-[60] lg:hidden">
           <button
             type="button"
             aria-label="Close menu"
@@ -212,6 +214,6 @@ export function Header() {
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 }

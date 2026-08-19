@@ -35,9 +35,9 @@ export const site = {
   tagline: "Straight answers and honest repairs in North Arlington",
 
   description:
-    "AAA Approved auto repair in Arlington, VA. Virginia state inspections, " +
-    "emissions testing, brakes, diagnostics, and full service for domestic, " +
-    "Asian, European, hybrid and electric vehicles.",
+    "TAB Motors Arlington is a AAA-approved, full-service auto repair shop and " +
+    "Exxon station on Langston Blvd. Virginia state inspections, emissions, brakes, " +
+    "diagnostics and service for every make, including hybrids and EVs.",
 
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://tabmotorsarlington.com",
 

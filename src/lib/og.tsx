@@ -1,5 +1,24 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { site } from "./site";
+
+/**
+ * The shop logo, embedded as a data URI so the share image shows the real
+ * badge instead of a text wordmark. Read from disk once per process.
+ */
+let logoPromise: Promise<string | null> | undefined;
+function loadLogo(): Promise<string | null> {
+  logoPromise ??= (async () => {
+    try {
+      const buf = await readFile(join(process.cwd(), "public", "images", "logo.png"));
+      return `data:image/png;base64,${buf.toString("base64")}`;
+    } catch {
+      return null;
+    }
+  })();
+  return logoPromise;
+}
 
 /**
  * Shared renderer for the social share images (Open Graph).
@@ -70,6 +89,7 @@ export async function renderOgImage({
   title: string;
 }) {
   const displayFont = await loadDisplayFont();
+  const logo = await loadLogo();
 
   // Condensed type is much narrower, so it can carry a larger size and the
   // uppercase treatment the site uses. The fallback font can't.
@@ -94,45 +114,44 @@ export async function renderOgImage({
           position: "relative",
         }}
       >
-        {/* Wordmark */}
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <div
-            style={{
-              width: 12,
-              height: 74,
-              backgroundColor: BRAND,
-              borderRadius: 6,
-              display: "flex",
-            }}
-          />
-          <div style={{ display: "flex", flexDirection: "column", marginLeft: 22 }}>
+        {/* Logo — the real badge, with a text wordmark as fallback */}
+        {logo ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={logo} width={182} height={130} alt="" style={{ display: "flex" }} />
+        ) : (
+          <div style={{ display: "flex", alignItems: "center" }}>
             <div
-              style={{
-                display: "flex",
-                fontFamily: displayFont ? "Display" : undefined,
-                fontSize: displayFont ? 58 : 48,
-                fontWeight: 700,
-                color: "#ffffff",
-                letterSpacing: "-0.02em",
-                lineHeight: 1,
-              }}
-            >
-              TAB MOTORS
-            </div>
-            <div
-              style={{
-                display: "flex",
-                fontSize: 19,
-                fontWeight: 700,
-                color: INK_SOFT,
-                letterSpacing: "0.22em",
-                marginTop: 8,
-              }}
-            >
-              ARLINGTON, VA
+              style={{ width: 12, height: 74, backgroundColor: BRAND, borderRadius: 6, display: "flex" }}
+            />
+            <div style={{ display: "flex", flexDirection: "column", marginLeft: 22 }}>
+              <div
+                style={{
+                  display: "flex",
+                  fontFamily: displayFont ? "Display" : undefined,
+                  fontSize: displayFont ? 58 : 48,
+                  fontWeight: 700,
+                  color: "#ffffff",
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1,
+                }}
+              >
+                TAB MOTORS
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  fontSize: 19,
+                  fontWeight: 700,
+                  color: INK_SOFT,
+                  letterSpacing: "0.22em",
+                  marginTop: 8,
+                }}
+              >
+                ARLINGTON, VA
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* Headline */}
         <div
