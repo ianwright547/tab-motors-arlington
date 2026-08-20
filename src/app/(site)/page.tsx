@@ -63,6 +63,24 @@ export default function HomePage() {
         />
         <div aria-hidden className="photo-scrim absolute inset-0" />
 
+        {/* Certification badges, subtly set into the hero */}
+        <div className="pointer-events-none absolute right-4 top-4 z-10 flex items-center gap-3 opacity-90 sm:right-6 sm:top-6 lg:right-8 lg:top-7">
+          <Image
+            src="/images/badge-aaa-clear.png"
+            alt="AAA Approved Auto Repair"
+            width={640}
+            height={320}
+            className="h-8 w-auto drop-shadow-md sm:h-10 lg:h-11"
+          />
+          <Image
+            src="/images/badge-carfax-clear.png"
+            alt="CARFAX Car Care Service Center"
+            width={631}
+            height={380}
+            className="h-10 w-auto drop-shadow-md sm:h-12 lg:h-14"
+          />
+        </div>
+
         <div className="container-page relative py-20 md:py-28 lg:py-36">
           <div className="max-w-2xl">
             <div className="flex flex-wrap gap-2">
