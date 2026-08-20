@@ -19,6 +19,7 @@ import { IconPlate } from "@/components/site/IconPlate";
 import { Reveal } from "@/components/site/Reveal";
 import { LocalBusinessSchema } from "@/components/site/StructuredData";
 import { ReviewsSection } from "@/components/site/ReviewsSection";
+import { SocialSection } from "@/components/site/SocialSection";
 import { BlogTeasers } from "@/components/site/BlogTeasers";
 import { services } from "@/lib/services";
 import { formatHoursSummary, site } from "@/lib/site";
@@ -404,6 +405,9 @@ export default function HomePage() {
           </p>
         </div>
       </section>
+
+      {/* ------------------------------------------- Latest social posts */}
+      <SocialSection />
 
       {/* ------------------------------------------------------------ Reviews */}
       <ReviewsSection count={6} />
