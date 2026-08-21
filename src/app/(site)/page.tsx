@@ -63,24 +63,6 @@ export default function HomePage() {
         />
         <div aria-hidden className="photo-scrim absolute inset-0" />
 
-        {/* Certification badges, subtly set into the hero */}
-        <div className="pointer-events-none absolute right-4 top-4 z-10 flex items-center gap-3 opacity-90 sm:right-6 sm:top-6 lg:right-8 lg:top-7">
-          <Image
-            src="/images/badge-aaa-clear.png"
-            alt="AAA Approved Auto Repair"
-            width={640}
-            height={320}
-            className="h-8 w-auto drop-shadow-md sm:h-10 lg:h-11"
-          />
-          <Image
-            src="/images/badge-carfax-clear.png"
-            alt="CARFAX Car Care Service Center"
-            width={631}
-            height={380}
-            className="h-10 w-auto drop-shadow-md sm:h-12 lg:h-14"
-          />
-        </div>
-
         <div className="container-page relative py-20 md:py-28 lg:py-36">
           <div className="max-w-2xl">
             <div className="flex flex-wrap gap-2">
@@ -139,6 +121,28 @@ export default function HomePage() {
 
       {/* ----------------------------------------------------------- Trust bar */}
       <section className="border-b border-ink-200 bg-white">
+        {/* Certifications — the badges on white, where they read cleanly */}
+        <div className="container-page flex flex-wrap items-center justify-center gap-x-9 gap-y-4 border-b border-ink-100 py-6 md:py-7">
+          <span className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-ink-400">
+            Approved &amp; certified by
+          </span>
+          <Image
+            src="/images/badge-aaa.png"
+            alt="AAA Approved Auto Repair"
+            width={640}
+            height={320}
+            className="h-10 w-auto sm:h-11"
+          />
+          <span aria-hidden className="hidden h-9 w-px bg-ink-200 sm:block" />
+          <Image
+            src="/images/badge-carfax.png"
+            alt="CARFAX Car Care Service Center"
+            width={640}
+            height={390}
+            className="h-12 w-auto sm:h-14"
+          />
+        </div>
+
         <div className="container-page grid gap-x-10 gap-y-7 py-10 sm:grid-cols-2 lg:grid-cols-3 lg:py-12">
           <TrustItem icon={BadgeCheck} title="AAA Approved" body={site.aaa.memberBenefit} />
           <TrustItem
