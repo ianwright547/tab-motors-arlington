@@ -65,6 +65,28 @@ export default function HomePage() {
 
         <div className="container-page relative py-20 md:py-28 lg:py-36">
           <div className="max-w-2xl">
+            {/* Certification badges — crisp on their own white chips, set into the hero */}
+            <div className="mb-5 flex flex-wrap items-center gap-2.5">
+              <span className="inline-flex items-center rounded-lg bg-white/95 px-3 py-2 shadow-lg ring-1 ring-black/5">
+                <Image
+                  src="/images/badge-aaa.png"
+                  alt="AAA Approved Auto Repair"
+                  width={640}
+                  height={320}
+                  className="h-7 w-auto sm:h-8"
+                />
+              </span>
+              <span className="inline-flex items-center rounded-lg bg-white/95 px-3 py-2 shadow-lg ring-1 ring-black/5">
+                <Image
+                  src="/images/badge-carfax.png"
+                  alt="CARFAX Car Care Service Center"
+                  width={640}
+                  height={390}
+                  className="h-8 w-auto sm:h-9"
+                />
+              </span>
+            </div>
+
             <div className="flex flex-wrap gap-2">
               <span className="inline-flex items-center gap-2 rounded-full border border-brand-500/40 bg-ink-950/60 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-brand-300 backdrop-blur-sm">
                 <BadgeCheck className="size-3.5" aria-hidden />
@@ -121,28 +143,6 @@ export default function HomePage() {
 
       {/* ----------------------------------------------------------- Trust bar */}
       <section className="border-b border-ink-200 bg-white">
-        {/* Certifications — the badges on white, where they read cleanly */}
-        <div className="container-page flex flex-wrap items-center justify-center gap-x-9 gap-y-4 border-b border-ink-100 py-6 md:py-7">
-          <span className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-ink-400">
-            Approved &amp; certified by
-          </span>
-          <Image
-            src="/images/badge-aaa.png"
-            alt="AAA Approved Auto Repair"
-            width={640}
-            height={320}
-            className="h-10 w-auto sm:h-11"
-          />
-          <span aria-hidden className="hidden h-9 w-px bg-ink-200 sm:block" />
-          <Image
-            src="/images/badge-carfax.png"
-            alt="CARFAX Car Care Service Center"
-            width={640}
-            height={390}
-            className="h-12 w-auto sm:h-14"
-          />
-        </div>
-
         <div className="container-page grid gap-x-10 gap-y-7 py-10 sm:grid-cols-2 lg:grid-cols-3 lg:py-12">
           <TrustItem icon={BadgeCheck} title="AAA Approved" body={site.aaa.memberBenefit} />
           <TrustItem
