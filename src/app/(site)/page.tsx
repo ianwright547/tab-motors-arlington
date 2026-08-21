@@ -63,60 +63,48 @@ export default function HomePage() {
         />
         <div aria-hidden className="photo-scrim absolute inset-0" />
 
-        <div className="container-page relative py-20 md:py-28 lg:py-36">
+        <div className="container-page relative py-11 md:py-24 lg:py-32">
           <div className="max-w-2xl">
-            {/* Certification badges — crisp on their own white chips, set into the hero */}
-            <div className="mb-5 flex flex-wrap items-center gap-2.5">
-              <span className="inline-flex items-center rounded-lg bg-white/95 px-3 py-2 shadow-lg ring-1 ring-black/5">
+            {/* Credentials — badges + one combined pill, in a single tight row */}
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center rounded-lg bg-white/95 px-2.5 py-1.5 shadow-md ring-1 ring-black/5">
                 <Image
                   src="/images/badge-aaa.png"
                   alt="AAA Approved Auto Repair"
                   width={640}
                   height={320}
-                  className="h-7 w-auto sm:h-8"
+                  className="h-6 w-auto sm:h-7"
                 />
               </span>
-              <span className="inline-flex items-center rounded-lg bg-white/95 px-3 py-2 shadow-lg ring-1 ring-black/5">
+              <span className="inline-flex items-center rounded-lg bg-white/95 px-2.5 py-1.5 shadow-md ring-1 ring-black/5">
                 <Image
                   src="/images/badge-carfax.png"
                   alt="CARFAX Car Care Service Center"
                   width={640}
                   height={390}
-                  className="h-8 w-auto sm:h-9"
+                  className="h-7 w-auto sm:h-8"
                 />
               </span>
-            </div>
-
-            <div className="flex flex-wrap gap-2">
-              <span className="inline-flex items-center gap-2 rounded-full border border-brand-500/40 bg-ink-950/60 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-brand-300 backdrop-blur-sm">
-                <BadgeCheck className="size-3.5" aria-hidden />
-                AAA Approved
-              </span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-ink-950/60 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-white backdrop-blur-sm">
-                <ClipboardCheck className="size-3.5" aria-hidden />
-                Official VA inspection station
-              </span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-ink-950/60 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-white backdrop-blur-sm">
-                <Clock className="size-3.5" aria-hidden />
-                Open Saturdays
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-ink-950/55 px-3 py-1.5 text-[0.7rem] font-bold uppercase tracking-[0.07em] text-white backdrop-blur-sm">
+                <ClipboardCheck className="size-3.5 text-brand-400" aria-hidden />
+                Official VA inspection · Open Saturdays
               </span>
             </div>
 
-            <p className="mt-7 font-display text-sm font-bold uppercase tracking-[0.18em] text-brand-300">
+            <p className="mt-5 font-display text-xs font-bold uppercase tracking-[0.18em] text-brand-300 sm:text-sm">
               Straight answers. Honest repairs.
             </p>
             {/* Our SEO H1, preserved verbatim from the SEO build. */}
-            <h1 className="mt-3 font-display text-5xl font-bold uppercase leading-[0.9] tracking-[-0.02em] text-white sm:text-6xl lg:text-7xl">
+            <h1 className="mt-2.5 font-display text-[2.6rem] font-bold uppercase leading-[0.92] tracking-[-0.02em] text-white sm:text-6xl lg:text-7xl">
               Auto repair in <span className="text-brand-500">Arlington, VA</span>.
             </h1>
 
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-200 sm:text-xl">
-              Full-service auto repair on Langston Blvd in North Arlington. Inspections,
-              diagnostics and everything in between, for domestic, Asian, European, hybrid and
-              electric vehicles.
+            <p className="mt-4 max-w-lg text-base leading-relaxed text-ink-200 sm:text-lg">
+              Full-service auto repair on Langston Blvd in North Arlington — inspections,
+              diagnostics, and everything in between.
             </p>
 
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/quote" size="lg" className="sm:min-w-56">
                 Get a free quote
               </ButtonLink>
@@ -131,9 +119,8 @@ export default function HomePage() {
               </ButtonAnchor>
             </div>
 
-            <p className="mt-6 text-sm text-ink-300">
-              Open 7:00 AM to 6:00 PM weekdays, until 3:00 PM Saturdays. No obligation, no
-              pressure.
+            <p className="mt-4 text-sm text-ink-300">
+              Open Mon–Fri 7–6, Sat 7–3 · No obligation, no pressure.
             </p>
           </div>
         </div>
