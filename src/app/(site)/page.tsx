@@ -91,6 +91,14 @@ export default function HomePage() {
               </span>
             </div>
 
+            {/* AAA Approved — its own line below the VA inspection pill */}
+            <div className="mt-2 flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-500/40 bg-ink-950/55 px-3 py-1.5 text-[0.7rem] font-bold uppercase tracking-[0.07em] text-brand-300 backdrop-blur-sm">
+                <BadgeCheck className="size-3.5" aria-hidden />
+                AAA Approved Auto Repair
+              </span>
+            </div>
+
             <p className="mt-5 font-display text-xs font-bold uppercase tracking-[0.18em] text-brand-300 sm:text-sm">
               Straight answers. Honest repairs.
             </p>
