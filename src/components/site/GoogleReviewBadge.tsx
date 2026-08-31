@@ -6,8 +6,8 @@ import { ratingValue, reviewCount } from "@/lib/reviews";
  * Floating Google reviews badge, pinned bottom-right.
  *
  * Small social-proof chip that follows the visitor as they scroll — the 4.9
- * star rating with a live link to the shop's Google profile. Hidden on phones
- * so it never collides with the fixed call/quote bar at the bottom.
+ * star rating with a live link to the shop's Google profile. On phones it sits
+ * higher up the screen so it clears the fixed call/quote bar at the bottom.
  */
 export function GoogleReviewBadge() {
   const href = site.toConfirm.googleReviewUrl
@@ -20,7 +20,7 @@ export function GoogleReviewBadge() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Read our ${ratingValue}-star Google reviews`}
-      className="group fixed bottom-5 right-5 z-40 hidden items-center gap-3 rounded-full border border-ink-200 bg-white/95 px-4 py-2.5 shadow-lg shadow-ink-950/10 backdrop-blur transition-transform hover:-translate-y-0.5 hover:shadow-xl lg:flex print:hidden"
+      className="group fixed bottom-[calc(5rem+env(safe-area-inset-bottom))] right-4 z-40 flex items-center gap-2.5 rounded-full border border-ink-200 bg-white/95 px-3.5 py-2 shadow-lg shadow-ink-950/10 backdrop-blur transition-transform hover:-translate-y-0.5 hover:shadow-xl lg:bottom-5 lg:right-5 lg:gap-3 lg:px-4 lg:py-2.5 print:hidden"
     >
       {/* Google "G" */}
       <svg className="size-6 shrink-0" viewBox="0 0 24 24" aria-hidden>
