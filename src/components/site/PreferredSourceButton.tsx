@@ -50,7 +50,7 @@ export function PreferredSourceButton() {
       rel="noopener noreferrer"
       onClick={handleClick}
       aria-label={`Add ${site.name} as a preferred source on Google`}
-      title="Add TAB Motors Arlington to Google Preferred Sources"
+      title="Add TAB Motors Arlington as a preferred source on Google"
       className="fixed bottom-[calc(9.25rem+env(safe-area-inset-bottom))] right-4 z-40 inline-flex h-10 items-center gap-2 rounded-full border border-ink-200 bg-white/95 px-3 text-xs font-bold text-ink-900 shadow-lg shadow-ink-950/10 backdrop-blur transition-colors hover:border-brand-400 hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 lg:bottom-[5.5rem] lg:right-5 print:hidden"
     >
       <svg className="size-4 shrink-0" viewBox="0 0 24 24" aria-hidden>
