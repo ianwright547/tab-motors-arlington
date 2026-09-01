@@ -2,6 +2,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { MobileCallBar, MobileCallBarSpacer } from "@/components/site/MobileCallBar";
 import { GoogleReviewBadge } from "@/components/site/GoogleReviewBadge";
+import { PreferredSourceButton } from "@/components/site/PreferredSourceButton";
 
 /**
  * Chrome for the public site. The admin dashboard sits outside this group so it
@@ -22,6 +23,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       <Footer />
       <MobileCallBar />
       <GoogleReviewBadge />
+      <PreferredSourceButton />
     </>
   );
 }
