@@ -25,7 +25,8 @@ export async function generateMetadata({
   const area = getArea(slug);
   if (!area) return {};
   return {
-    title: area.metaTitle,
+    // metaTitle already ends with the business name; skip the layout template.
+    title: { absolute: area.metaTitle },
     description: area.metaDescription,
     alternates: { canonical: `/service-areas/${area.slug}` },
   };

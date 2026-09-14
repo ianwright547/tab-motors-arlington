@@ -26,7 +26,9 @@ export async function generateMetadata({
 
   // Our SEO title + description, preserved verbatim from the SEO build.
   return {
-    title: service.metaTitle,
+    // metaTitle already ends with the business name, so opt out of the root
+    // layout's `%s | TAB Motors Arlington` template instead of doubling it.
+    title: { absolute: service.metaTitle },
     description: service.metaDescription,
     alternates: { canonical: `/services/${service.slug}` },
   };

@@ -7,7 +7,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { posts } from "@/lib/blog";
 
 export const metadata: Metadata = {
-  title: "Car Care Advice & Guides | TAB Motors Arlington",
+  title: { absolute: "Car Care Advice & Guides | TAB Motors Arlington" },
   description:
     "Straight, jargon-free advice on Virginia inspection, oil changes, brakes, check-engine " +
     "lights, batteries and tires from the team at TAB Motors in Arlington, VA.",

@@ -8,7 +8,7 @@ import { ratingValue, reviewCount, reviews } from "@/lib/reviews";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `Reviews | ${ratingValue} Stars · ${reviewCount}+ Google Reviews | TAB Motors Arlington`,
+  title: { absolute: `Reviews | ${ratingValue} Stars · ${reviewCount}+ Google Reviews | TAB Motors Arlington` },
   description: `Real Google reviews for ${site.name}, AAA Approved auto repair in Arlington, VA. ${ratingValue} stars from ${reviewCount}+ customers.`,
   alternates: { canonical: "/reviews" },
 };
