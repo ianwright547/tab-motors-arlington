@@ -4,9 +4,10 @@ import { notFound } from "next/navigation";
 import { ArrowRight, BadgeCheck, Check, CreditCard, Phone, ShieldCheck } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { QuoteCta } from "@/components/site/QuoteCta";
-import { BlogTeasers } from "@/components/site/BlogTeasers";
+import { BreadcrumbSchema, ServiceSchema } from "@/components/site/StructuredData";
 import { ButtonAnchor, ButtonLink } from "@/components/ui/Button";
 import { getService, otherServices, services } from "@/lib/services";
+import { getPost } from "@/lib/blog";
 import { formatHoursSummary, site } from "@/lib/site";
 import { telHref } from "@/lib/format";
 
@@ -41,33 +42,23 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
   const related = otherServices(service.slug, 6);
 
-  const faqLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: service.faq.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
+  // Articles chosen for THIS service, not the three most recent posts.
+  const articles = service.relatedPosts
+    .map((slug) => getPost(slug))
+    .filter((post) => post !== undefined);
+
+  const trail = [{ label: "Services", href: "/services" }, { label: service.name }];
 
   return (
     <>
-      {service.faq.length > 0 && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
-        />
-      )}
+      <BreadcrumbSchema trail={trail} />
+      <ServiceSchema name={service.name} description={service.blurb} slug={service.slug} />
 
       <PageHero
         eyebrow="Service"
         title={service.h1}
         intro={service.heroText}
-        breadcrumbs={[
-          { label: "Services", href: "/services" },
-          { label: service.name },
-        ]}
+        breadcrumbs={trail}
       />
 
       <div className="container-page grid gap-10 py-14 md:py-16 lg:grid-cols-[1.5fr_1fr] lg:gap-14">
@@ -90,28 +81,229 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             </ul>
           </section>
 
+          {/* Symptoms first: most people arrive describing a noise, not a part. */}
+          {service.symptoms.length > 0 && (
+            <section className="mt-12">
+              <h2 className="font-display text-2xl font-bold uppercase tracking-tight">
+                Come in if you have
+              </h2>
+              <ul className="mt-5 space-y-2.5">
+                {service.symptoms.map((symptom) => (
+                  <li key={symptom} className="flex items-start gap-2.5 text-ink-700">
+                    <Check
+                      className="mt-1 size-4 shrink-0 text-brand-600"
+                      strokeWidth={3}
+                      aria-hidden
+                    />
+                    <span className="leading-relaxed">{symptom}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
           {/* Our SEO educational article, styled in his design */}
           <article
             className="prose-shop mt-12"
             dangerouslySetInnerHTML={{ __html: service.bodyHtml }}
           />
 
-          {/* What it costs — his trust cards, payment-plans wording */}
+          {/* Inspection pages only: the regulated test, separated from repairs. */}
+          {service.inspection && (
+            <section className="mt-12 space-y-10">
+              <div>
+                <h2 className="font-display text-2xl font-bold uppercase tracking-tight">
+                  What the inspection costs
+                </h2>
+                <p className="mt-4 leading-relaxed text-ink-700">
+                  {service.inspection.feeNote}
+                </p>
+                <ul className="mt-5 space-y-2.5 rounded-lg border border-ink-200 bg-ink-50 p-5 text-[0.9375rem] text-ink-700">
+                  <li>
+                    <strong className="text-ink-900">The test fee</strong> is set by the
+                    Commonwealth and is the same at every official station.
+                  </li>
+                  <li>
+                    <strong className="text-ink-900">Any repair</strong> is a separate job,
+                    quoted separately, and only after you approve it.
+                  </li>
+                  <li>
+                    <strong className="text-ink-900">Optional work</strong> we notice while the
+                    car is here is exactly that. We will mention it and leave it to you.
+                  </li>
+                  <li>
+                    <strong className="text-ink-900">The reinspection or retest</strong> has its
+                    own rules, set out below.
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h2 className="font-display text-2xl font-bold uppercase tracking-tight">
+                  Who needs this
+                </h2>
+                <p className="mt-4 leading-relaxed text-ink-700">
+                  {service.inspection.whoNeeds}
+                </p>
+              </div>
+
+              <div>
+                <h2 className="font-display text-2xl font-bold uppercase tracking-tight">
+                  What gets checked
+                </h2>
+                <ul className="mt-5 space-y-2.5">
+                  {service.inspection.whatsChecked.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-ink-700">
+                      <Check
+                        className="mt-1 size-4 shrink-0 text-brand-600"
+                        strokeWidth={3}
+                        aria-hidden
+                      />
+                      <span className="leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h2 className="font-display text-2xl font-bold uppercase tracking-tight">
+                  What to bring
+                </h2>
+                <ul className="mt-5 space-y-2.5">
+                  {service.inspection.whatToBring.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-ink-700">
+                      <Check
+                        className="mt-1 size-4 shrink-0 text-brand-600"
+                        strokeWidth={3}
+                        aria-hidden
+                      />
+                      <span className="leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h2 className="font-display text-2xl font-bold uppercase tracking-tight">
+                  Walk in or book ahead
+                </h2>
+                <p className="mt-4 leading-relaxed text-ink-700">
+                  {service.inspection.scheduling}
+                </p>
+              </div>
+
+              <div>
+                <h2 className="font-display text-2xl font-bold uppercase tracking-tight">
+                  If your vehicle fails
+                </h2>
+                <p
+                  className="prose-shop mt-4 leading-relaxed text-ink-700"
+                  dangerouslySetInnerHTML={{ __html: service.inspection.ifItFails }}
+                />
+              </div>
+
+              <div>
+                <h2 className="font-display text-2xl font-bold uppercase tracking-tight">
+                  Reinspection and retest
+                </h2>
+                <p className="mt-4 leading-relaxed text-ink-700">
+                  {service.inspection.reinspection}
+                </p>
+              </div>
+
+              <div>
+                <h2 className="font-display text-2xl font-bold uppercase tracking-tight">
+                  Talk to the shop
+                </h2>
+                <p className="mt-4 leading-relaxed text-ink-700">
+                  Call{" "}
+                  <a
+                    href={telHref(site.phone.e164)}
+                    className="font-semibold text-brand-700 underline underline-offset-2"
+                  >
+                    {site.phone.display}
+                  </a>{" "}
+                  or come by {site.address.street}, {site.address.city}, {site.address.state}{" "}
+                  {site.address.zip}. You can also{" "}
+                  <Link
+                    href={`/quote?service=${service.slug}`}
+                    className="font-semibold text-brand-700 underline underline-offset-2"
+                  >
+                    send us the details online
+                  </Link>{" "}
+                  and we will get back to you.
+                </p>
+              </div>
+            </section>
+          )}
+
+          {/* The same process on every job, because it is the same process. */}
           <section className="mt-12">
             <h2 className="font-display text-2xl font-bold uppercase tracking-tight">
-              What it costs
+              What happens next
             </h2>
-            <div className="mt-4 space-y-3 text-ink-700">
-              <p className="leading-relaxed">
-                We don&apos;t publish a flat price for this, because an honest number depends on
-                your specific vehicle and what we find. What we will do is tell you the price
-                before we start, and not change it without talking to you first.
-              </p>
-              <p className="leading-relaxed">
-                If we need to see the car before we can quote accurately, we&apos;ll say so
-                rather than throw out a number we can&apos;t stand behind.
-              </p>
-            </div>
+            <ol className="mt-5 space-y-4">
+              {[
+                {
+                  step: "Tell us what it is doing",
+                  detail: `Call ${site.phone.display}, start a quote online, or stop in. What you hear or feel, and when, narrows things down before anything comes apart.`,
+                },
+                {
+                  step: "We look at the car",
+                  detail:
+                    "We check the actual parts rather than guessing from the symptom, and we tell you if the cause turns out to be something other than what you came in for.",
+                },
+                {
+                  step: "You get the price first",
+                  detail:
+                    "We show you what we found, explain what is urgent and what can wait, and quote the work before we start. You are free to think it over or take the quote elsewhere.",
+                },
+                {
+                  step: "We do the work",
+                  detail: `Once you approve it, the job goes ahead, backed by our ${site.warranty.label.toLowerCase()}. ${site.financing.short} for larger repairs.`,
+                },
+                {
+                  step: "You get the car back",
+                  detail:
+                    "Road tested where it matters, with a plain explanation of what was done and anything worth keeping an eye on.",
+                },
+              ].map((item, index) => (
+                <li key={item.step} className="flex gap-4">
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-ink-900 font-display text-sm font-bold text-white">
+                    {index + 1}
+                  </span>
+                  <div>
+                    <h3 className="font-semibold text-ink-900">{item.step}</h3>
+                    <p className="mt-1 leading-relaxed text-ink-600">{item.detail}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          {/* What it costs — his trust cards, payment-plans wording.
+              Skipped on the inspection pages: the fee there is set by statute,
+              so "it depends on your vehicle" would be flatly untrue. Those pages
+              get the regulated-fee block above instead. */}
+          <section className="mt-12">
+            {!service.inspection && (
+              <>
+                <h2 className="font-display text-2xl font-bold uppercase tracking-tight">
+                  What it costs
+                </h2>
+                <div className="mt-4 space-y-3 text-ink-700">
+                  <p className="leading-relaxed">
+                    We don&apos;t publish a flat price for this, because an honest number depends
+                    on your specific vehicle and what we find. What we will do is tell you the
+                    price before we start, and not change it without talking to you first.
+                  </p>
+                  <p className="leading-relaxed">
+                    If we need to see the car before we can quote accurately, we&apos;ll say so
+                    rather than throw out a number we can&apos;t stand behind.
+                  </p>
+                </div>
+              </>
+            )}
 
             <div className="mt-5 grid gap-3 sm:grid-cols-3">
               <div className="rounded-lg border border-brand-200 bg-brand-50 p-4">
@@ -234,7 +426,42 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         </aside>
       </div>
 
-      <BlogTeasers heading="More from our blog" className="border-t border-ink-200" />
+      {articles.length > 0 && (
+        <section className="border-t border-ink-200">
+          <div className="container-page py-14 md:py-16">
+            <h2 className="font-display text-2xl font-bold uppercase tracking-tight">
+              More on {service.name.toLowerCase()}
+            </h2>
+            <ul className="mt-6 grid gap-5 md:grid-cols-2">
+              {articles.map((post) => (
+                <li key={post.slug}>
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="group flex h-full flex-col rounded-2xl border border-ink-200 bg-white p-6 transition-all duration-200 hover:-translate-y-1 hover:border-brand-200 hover:shadow-lift"
+                  >
+                    <span className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-700">
+                      {post.category}
+                    </span>
+                    <h3 className="mt-3 font-display text-lg font-semibold leading-tight">
+                      {post.title}
+                    </h3>
+                    <p className="mt-2 flex-1 text-[0.9375rem] leading-relaxed text-ink-600">
+                      {post.teaser}
+                    </p>
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700">
+                      Read the guide
+                      <ArrowRight
+                        className="size-4 transition-transform group-hover:translate-x-1"
+                        aria-hidden
+                      />
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       <QuoteCta heading={`Need ${service.name.toLowerCase()}?`} serviceSlug={service.slug} />
     </>

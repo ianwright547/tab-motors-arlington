@@ -56,6 +56,10 @@ export const metadata: Metadata = {
     ? { index: true, follow: true }
     : { index: false, follow: false },
   alternates: {
+    // Next normalizes this through `new URL()`, which drops the trailing slash,
+    // so the rendered tag is the bare origin. The sitemap is written to match
+    // it exactly (see src/app/sitemap.xml/route.ts) rather than the two
+    // disagreeing over a slash Google would collapse anyway.
     canonical: "/",
   },
 };

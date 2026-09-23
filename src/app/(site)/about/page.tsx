@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BadgeCheck, Car, ClipboardCheck, Receipt, ShieldCheck, Wrench } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
+import { BreadcrumbSchema } from "@/components/site/StructuredData";
 import { QuoteCta } from "@/components/site/QuoteCta";
 import { ShopPhoto } from "@/components/site/ShopPhoto";
 import { ReviewsSection } from "@/components/site/ReviewsSection";
@@ -23,6 +24,8 @@ export default function AboutPage() {
 
   return (
     <>
+      <BreadcrumbSchema trail={[{ label: "About" }]} />
+
       <PageHero
         eyebrow="About us"
         title="An independent shop that explains itself"
@@ -108,6 +111,59 @@ export default function AboutPage() {
               body="German, Japanese, Korean, domestic, hybrid or fully electric, including the makes many independents won't touch."
             />
           </ul>
+        </div>
+      </section>
+
+      <section className="container-page py-14 md:py-16">
+        <h2 className="font-display text-2xl font-bold uppercase tracking-tight sm:text-3xl">
+          How a diagnosis and an estimate actually work here
+        </h2>
+        <div className="mt-6 grid gap-8 lg:grid-cols-2 lg:gap-12">
+          <div className="space-y-4 text-[1.0625rem] leading-relaxed text-ink-700">
+            <p>
+              A fault code is a starting point, not an answer. It tells us which circuit or
+              system reported a problem, not which part failed. So we test the thing the code
+              points at before anyone orders a part, which is why we would rather have the car
+              for an hour than guess over the phone.
+            </p>
+            <p>
+              Once we know what is wrong, you get a price for the work and a plain explanation
+              of what is urgent and what can wait. Nothing else goes on the invoice without a
+              conversation first. If we find something while the car is open, we call you.
+            </p>
+            <p>
+              If we cannot quote accurately without seeing the car, we say that instead of
+              throwing out a number we cannot stand behind. And you are free to take the
+              estimate somewhere else. We would rather you did that than felt cornered.
+            </p>
+          </div>
+          <div className="space-y-4 text-[1.0625rem] leading-relaxed text-ink-700">
+            <p>
+              <strong className="font-semibold text-ink-900">On the warranty:</strong>{" "}
+              {site.warranty.label}. If something we repaired is not right, bring it back and we
+              will look at it.
+            </p>
+            <p>
+              <strong className="font-semibold text-ink-900">On inspections:</strong> we are an
+              official Virginia safety inspection and emissions station. That is a credential
+              issued by the Commonwealth, and it is why a failed item can be repaired and the
+              sticker issued in the same visit rather than across two shops.
+            </p>
+            <p>
+              <strong className="font-semibold text-ink-900">On paying for it:</strong>{" "}
+              {site.financing.blurb}
+            </p>
+            <p>
+              Ready to start?{" "}
+              <Link
+                href="/quote"
+                className="font-semibold text-brand-700 underline underline-offset-2"
+              >
+                Send us the details
+              </Link>{" "}
+              or call {site.phone.display}.
+            </p>
+          </div>
         </div>
       </section>
 

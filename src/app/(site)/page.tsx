@@ -17,7 +17,7 @@ import { ButtonAnchor, ButtonLink } from "@/components/ui/Button";
 import { ShopPhoto } from "@/components/site/ShopPhoto";
 import { IconPlate } from "@/components/site/IconPlate";
 import { Reveal } from "@/components/site/Reveal";
-import { LocalBusinessSchema } from "@/components/site/StructuredData";
+import { LocalBusinessSchema, WebSiteSchema } from "@/components/site/StructuredData";
 import { ReviewsSection } from "@/components/site/ReviewsSection";
 import { SocialSection } from "@/components/site/SocialSection";
 import { BlogTeasers } from "@/components/site/BlogTeasers";
@@ -48,6 +48,7 @@ export default function HomePage() {
   return (
     <>
       <LocalBusinessSchema />
+      <WebSiteSchema />
 
       {/* ---------------------------------------------------------------- Hero */}
       <section className="relative isolate overflow-hidden bg-ink-950">
@@ -89,9 +90,9 @@ export default function HomePage() {
             </h1>
 
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-200 sm:text-xl">
-              Full-service auto repair on Langston Blvd in North Arlington. Inspections,
-              diagnostics and everything in between, for domestic, Asian, European, hybrid and
-              electric vehicles.
+              A full-service repair shop at {site.address.street} in North Arlington, with an
+              Exxon station on the same property. Inspections, diagnostics and everything in
+              between, for domestic, Asian, European, hybrid and electric vehicles.
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -126,7 +127,7 @@ export default function HomePage() {
           <TrustItem
             icon={ShieldCheck}
             title={site.warranty.label}
-            body="If something we repaired isn't right, bring it back. Most shops give you 90 days."
+            body="If something we repaired isn't right, bring it back. Parts and labor both covered."
           />
           <TrustItem
             icon={Receipt}
@@ -375,27 +376,27 @@ export default function HomePage() {
           <div className="mt-9 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
             <ShopPhoto
               src="/images/shop-exterior.jpg"
-              alt="TAB Motors shop and Exxon station on Langston Blvd in Arlington"
+              alt="The TAB Motors shopfront with two open bays, a Porsche on a Rotary lift in one and an Audi in the other, under signs reading State Safety Inspection and Emission Testing and AAA Approved Auto Repair"
               className="col-span-2 aspect-[4/3] md:row-span-2 md:aspect-auto"
             />
             <ShopPhoto
               src="/images/inspection-lift.jpg"
-              alt="A vehicle up on the lift for a full inspection"
+              alt="A red Mercedes GLK with its hood up in the foreground while a black pickup sits on a lift behind it, front wheel off and brake rotor exposed, beside the Official Inspection Station banner"
               className="aspect-[4/3]"
             />
             <ShopPhoto
               src="/images/porsche-service.jpg"
-              alt="European and luxury vehicle service in the bay"
+              alt="A technician working at the open rear engine lid of a dark blue Porsche Cayman in the bay, with an oil drain caddy alongside and the Langston Blvd street sign visible through the open door"
               className="aspect-[4/3]"
             />
             <ShopPhoto
               src="/images/shop-interior.jpg"
-              alt="Inside the TAB Motors service bays"
+              alt="Three Rotary lifts across the TAB Motors workshop, a black Audi A7 raised with a wheel off, a second Audi A7 on the floor and an SUV on the lift at right"
               className="aspect-[4/3]"
             />
             <ShopPhoto
               src="/images/customer-cars.jpg"
-              alt="Customer vehicles of all makes at the shop"
+              alt="Customer cars parked in the lot: two Audis, a red Land Rover Discovery Sport and a Porsche Cayman S, all on Virginia plates, beside an Exxon Auto Repair banner"
               className="aspect-[4/3]"
             />
           </div>
@@ -444,6 +445,12 @@ export default function HomePage() {
                     >
                       Get directions
                     </a>
+                    <Link
+                      href="/contact"
+                      className="ml-4 text-sm font-semibold text-brand-700 underline underline-offset-4"
+                    >
+                      Contact &amp; directions
+                    </Link>
                   </dd>
                 </div>
               </div>

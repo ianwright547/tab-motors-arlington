@@ -8,6 +8,24 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   poweredByHeader: false,
+  async redirects() {
+    return [
+      {
+        // One canonical host: https://tabmotorsarlington.com.
+        //
+        // The www host used to be attached to the superseded static build,
+        // which still advertised the old Old Dominion Dr address. Once www is
+        // pointed at this project, this rule sends it to the apex instead of
+        // serving a second copy of the site. `/:path*` keeps the path, and
+        // Next carries the query string across automatically, so a deep link
+        // with UTM tags lands on the same page with its tags intact.
+        source: "/:path*",
+        has: [{ type: "host", value: "www.tabmotorsarlington.com" }],
+        destination: "https://tabmotorsarlington.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

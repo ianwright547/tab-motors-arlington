@@ -5,6 +5,7 @@ import { ArrowRight, MapPin, Phone, ShieldCheck, Star } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { QuoteCta } from "@/components/site/QuoteCta";
 import { BlogTeasers } from "@/components/site/BlogTeasers";
+import { BreadcrumbSchema } from "@/components/site/StructuredData";
 import { ButtonAnchor, ButtonLink } from "@/components/ui/Button";
 import { areas, getArea } from "@/lib/areas";
 import { services } from "@/lib/services";
@@ -43,37 +44,32 @@ export default async function ServiceAreaPage({
 
   const popular = services.slice(0, 6);
 
-  const faqLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: area.faq.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
+  const trail = [
+    { label: "Service Areas", href: "/service-areas" },
+    { label: area.name },
+  ];
 
   return (
     <>
-      {area.faq.length > 0 && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
-        />
-      )}
+      <BreadcrumbSchema trail={trail} />
 
       <PageHero
         eyebrow="Service Area"
         title={area.h1}
         intro={area.blurb}
-        breadcrumbs={[
-          { label: "Service Areas", href: "/service-areas" },
-          { label: area.name },
-        ]}
+        breadcrumbs={trail}
       />
 
       <div className="container-page grid gap-10 py-14 md:py-16 lg:grid-cols-[1.5fr_1fr] lg:gap-14">
         <div>
+          <p className="mb-8 rounded-lg border border-ink-200 bg-ink-50 p-4 text-[0.9375rem] leading-relaxed text-ink-700">
+            <strong className="text-ink-900">We are one shop, in Arlington.</strong> TAB Motors
+            is at {site.address.street}, {site.address.city}, {site.address.state}{" "}
+            {site.address.zip}. We do not have a second location
+            {area.slug === "arlington" ? "" : ` in ${area.name}`}; this page is for drivers
+            {area.slug === "arlington" ? " around Arlington" : ` coming to us from ${area.name}`}.
+          </p>
+
           <article
             className="prose-shop"
             dangerouslySetInnerHTML={{ __html: area.bodyHtml }}
@@ -125,7 +121,7 @@ export default async function ServiceAreaPage({
           <div className="rounded-xl border border-ink-200 bg-white p-5 shadow-card">
             <h2 className="font-display text-lg font-semibold">{area.name} drivers</h2>
             <p className="mt-2 text-sm text-ink-600">
-              {area.drive}. Honest, upfront pricing and same-day service in most cases.
+              {area.drive}. Honest, upfront pricing, and you get the number before we start.
             </p>
             <ButtonLink href="/quote" size="lg" className="mt-4 w-full">
               Start my free quote

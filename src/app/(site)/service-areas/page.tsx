@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, MapPin } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
+import { BreadcrumbSchema } from "@/components/site/StructuredData";
 import { QuoteCta } from "@/components/site/QuoteCta";
 import { Reveal } from "@/components/site/Reveal";
 import { areas } from "@/lib/areas";
@@ -17,6 +18,8 @@ export const metadata: Metadata = {
 export default function ServiceAreasPage() {
   return (
     <>
+      <BreadcrumbSchema trail={[{ label: "Service Areas" }]} />
+
       <PageHero
         eyebrow="Where we work"
         title="Auto repair across Arlington & Northern Virginia"

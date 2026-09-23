@@ -38,8 +38,11 @@ function requiredInteger(messages: {
   min: [number, string];
   max: [number, string];
 }) {
-  return z.union([z.string(), z.number()]).transform((raw, ctx) => {
-    const text = typeof raw === "number" ? String(raw) : raw.trim();
+  // `undefined` is accepted here so that a payload which omits the key gets the
+  // same human "Enter the vehicle year" as one that sends an empty string,
+  // rather than Zod's raw union error.
+  return z.union([z.string(), z.number(), z.undefined()]).transform((raw, ctx) => {
+    const text = raw === undefined ? "" : typeof raw === "number" ? String(raw) : raw.trim();
 
     if (text === "") {
       ctx.addIssue({ code: "custom", message: messages.missing });
@@ -137,8 +140,8 @@ export const quoteBaseSchema = z.object({
     min: [1900, "That year looks too old. Please check it"],
     max: [currentYear + 2, `Year can't be later than ${currentYear + 2}`],
   }),
-  vehicleMake: z.string().trim().min(1, "Enter the make").max(60),
-  vehicleModel: z.string().trim().min(1, "Enter the model").max(60),
+  vehicleMake: z.string({ error: "Enter the make" }).trim().min(1, "Enter the make").max(60),
+  vehicleModel: z.string({ error: "Enter the model" }).trim().min(1, "Enter the model").max(60),
   vehicleMileage: optionalInteger({
     invalid: "Enter the mileage using numbers only",
     max: [2_000_000, "That mileage looks too high. Please check it"],
@@ -146,7 +149,7 @@ export const quoteBaseSchema = z.object({
 
   // ---- Step 2: what they need ----
   services: z
-    .array(z.string())
+    .array(z.string(), { error: "Pick at least one, or choose “Something else”" })
     .min(1, "Pick at least one, or choose “Something else”")
     .max(20)
     .refine((values) => values.every(isValidServiceValue), {
@@ -163,10 +166,11 @@ export const quoteBaseSchema = z.object({
   dropOff: z.enum(dropOffValues).default("unsure"),
 
   // ---- Step 4: contact ----
-  name: z.string().trim().min(2, "Enter your name").max(100),
-  phone: z.string().trim().refine(isValidUsPhone, {
-    message: "Enter a 10-digit US phone number",
-  }),
+  name: z.string({ error: "Enter your name" }).trim().min(2, "Enter your name").max(100),
+  phone: z
+    .string({ error: "Enter a 10-digit US phone number" })
+    .trim()
+    .refine(isValidUsPhone, { message: "Enter a 10-digit US phone number" }),
   email: z
     .union([z.string().trim().pipe(z.email("Enter a valid email address")), z.literal("")])
     .optional()

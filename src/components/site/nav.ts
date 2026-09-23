@@ -24,7 +24,10 @@ export const navLinks: NavItem[] = [
     label: "Service Areas",
     href: "/service-areas",
     children: areas.map((a) => ({
-      label: `${a.name}, ${a.region}`,
+      // Washington, DC already carries its region in the name, so appending
+      // `region` again produced "Washington, DC, DC" in the dropdown on every
+      // page of the site. Only append when it adds something.
+      label: a.name.endsWith(a.region) ? a.name : `${a.name}, ${a.region}`,
       href: `/service-areas/${a.slug}`,
     })),
   },

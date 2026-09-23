@@ -1,3 +1,4 @@
+import { site } from "./site";
 import type { Faq } from "./services";
 
 /**
@@ -8,7 +9,7 @@ import type { Faq } from "./services";
 export const generalFaq: Faq[] = [
   {
     q: "Do I need an appointment, or can I walk in?",
-    a: "Walk-ins are welcome, especially for state inspections, oil changes and tires. For bigger repairs, calling ahead at (703) 243-3080 means we'll have the right parts and time set aside.",
+    a: `Walk-ins are welcome, especially for state inspections, oil changes and tires. For bigger repairs, calling ahead at ${site.phone.display} means we'll have the right parts and time set aside.`,
   },
   {
     q: "Do you do Virginia state inspection and emissions here?",

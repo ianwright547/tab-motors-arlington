@@ -31,7 +31,7 @@ import {
   serviceLabel,
   services,
 } from "@/lib/services";
-import { site } from "@/lib/site";
+import { formatHoursSummary, site } from "@/lib/site";
 import { formatPhone, telHref } from "@/lib/format";
 import {
   TOTAL_STEPS,
@@ -714,8 +714,16 @@ function SuccessPanel({ values }: { values: FormState }) {
       <div className="mt-6 rounded-lg bg-ink-900 p-4 text-ink-200">
         <p className="text-sm">
           Need it sooner, or remembered something? Call the shop directly. During business hours
-          that's always the fastest route.
+          that&apos;s always the fastest route.
         </p>
+        <dl className="mt-3 space-y-1 text-sm text-ink-400">
+          {formatHoursSummary().map((entry) => (
+            <div key={entry.label} className="flex gap-3">
+              <dt className="w-20 shrink-0 font-medium text-ink-300">{entry.label}</dt>
+              <dd>{entry.value}</dd>
+            </div>
+          ))}
+        </dl>
         <ButtonAnchor href={telHref(site.phone.e164)} className="mt-3 w-full sm:w-auto">
           <Phone className="size-4" aria-hidden />
           {site.phone.display}

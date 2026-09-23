@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
+import { BreadcrumbSchema } from "@/components/site/StructuredData";
 import { QuoteCta } from "@/components/site/QuoteCta";
 import { Reveal } from "@/components/site/Reveal";
 import { posts } from "@/lib/blog";
@@ -17,6 +18,8 @@ export const metadata: Metadata = {
 export default function BlogIndexPage() {
   return (
     <>
+      <BreadcrumbSchema trail={[{ label: "Blog" }]} />
+
       <PageHero
         eyebrow="Advice & guides"
         title="Car care, explained without the jargon"

@@ -41,7 +41,7 @@ export function GET() {
   const urls = entries
     .map(
       (e) => `  <url>
-    <loc>${site.url}${e.path === "/" ? "/" : e.path}</loc>
+    <loc>${site.url}${e.path === "/" ? "" : e.path}</loc>
     <lastmod>${now}</lastmod>
     <changefreq>${e.changefreq}</changefreq>
     <priority>${e.priority.toFixed(1)}</priority>

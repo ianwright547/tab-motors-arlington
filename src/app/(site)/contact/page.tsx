@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { BadgeCheck, Clock, CreditCard, MapPin, Phone, ShieldCheck } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { ButtonAnchor, ButtonLink } from "@/components/ui/Button";
 import { FaqSection } from "@/components/site/FaqSection";
 import { BlogTeasers } from "@/components/site/BlogTeasers";
+import { BreadcrumbSchema } from "@/components/site/StructuredData";
 import { generalFaq } from "@/lib/faq";
+import { services } from "@/lib/services";
 import { formatHoursSummary, site } from "@/lib/site";
 import { telHref } from "@/lib/format";
 
@@ -22,6 +25,8 @@ export default function ContactPage() {
 
   return (
     <>
+      <BreadcrumbSchema trail={[{ label: "Contact" }]} />
+
       <PageHero
         eyebrow="Find us"
         title="Contact & directions"
@@ -116,6 +121,39 @@ export default function ContactPage() {
               <h2 className="mt-2 text-sm font-bold text-ink-900">Payment plans available</h2>
               <p className="mt-1 text-sm text-ink-700">{site.financing.blurb}</p>
             </div>
+          </div>
+
+          <div className="mt-8 rounded-xl border border-ink-200 bg-white p-5">
+            <h2 className="font-display text-lg font-semibold">Walk in or call ahead</h2>
+            <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-700">
+              Walk-ins are welcome, and they are usually the right call for a state
+              inspection, an emissions test, an oil change or tire work. Mornings are the
+              quietest.
+            </p>
+            <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-700">
+              For a larger repair, call {site.phone.display} first. It is not that we turn
+              anyone away, it is that having your parts on the shelf and a bay set aside is
+              usually the difference between getting the car back today and getting it back
+              tomorrow.
+            </p>
+          </div>
+
+          <div className="mt-6">
+            <h2 className="font-display text-lg font-semibold">
+              What we handle at this location
+            </h2>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {services.map((service) => (
+                <li key={service.slug}>
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className="inline-block rounded-full border border-ink-200 bg-white px-3.5 py-1.5 text-sm font-medium text-ink-700 transition-colors hover:border-ink-400 hover:bg-ink-50"
+                  >
+                    {service.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {amenities.length > 0 && (

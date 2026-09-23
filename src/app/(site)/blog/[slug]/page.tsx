@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
+import { BreadcrumbSchema } from "@/components/site/StructuredData";
 import { QuoteCta } from "@/components/site/QuoteCta";
 import { FaqSection } from "@/components/site/FaqSection";
 import { getPost, otherPosts, posts } from "@/lib/blog";
@@ -39,13 +40,17 @@ export default async function BlogPostPage({
 
   const related = otherPosts(post.slug, 3);
 
+  const trail = [{ label: "Blog", href: "/blog" }, { label: post.title }];
+
   const articleLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.metaDescription,
     articleSection: post.category,
-    publisher: { "@type": "AutoRepair", name: site.name },
+    // Reference the single business node published on the home page rather
+    // than restating the business here. One entity, one place it can drift.
+    publisher: { "@id": `${site.url}#business` },
     mainEntityOfPage: `${site.url}/blog/${post.slug}`,
   };
 
@@ -56,14 +61,9 @@ export default async function BlogPostPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
       />
 
-      <PageHero
-        eyebrow={post.category}
-        title={post.title}
-        breadcrumbs={[
-          { label: "Blog", href: "/blog" },
-          { label: post.title },
-        ]}
-      />
+      <BreadcrumbSchema trail={trail} />
+
+      <PageHero eyebrow={post.category} title={post.title} breadcrumbs={trail} />
 
       <div className="container-page grid gap-10 py-14 md:py-16 lg:grid-cols-[1.7fr_1fr] lg:gap-14">
         <div>
