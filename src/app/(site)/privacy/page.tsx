@@ -110,7 +110,14 @@ export default function PrivacyPage() {
             <h2>Your choices</h2>
             <p>
               You can ask us what we hold about you, ask us to correct it, or ask us to delete it.
-              Call the shop or send an email and we'll take care of it.
+              Call the shop or email{" "}
+              <a
+                href={`mailto:${site.email}`}
+                className="font-semibold text-brand-700 underline underline-offset-2"
+              >
+                {site.email}
+              </a>{" "}
+              and we'll take care of it.
             </p>
           </section>
 
@@ -144,6 +151,13 @@ export default function PrivacyPage() {
                 className="font-semibold text-brand-700 underline underline-offset-2"
               >
                 {site.phone.display}
+              </a>
+              <br />
+              <a
+                href={`mailto:${site.email}`}
+                className="font-semibold text-brand-700 underline underline-offset-2"
+              >
+                {site.email}
               </a>
             </p>
           </section>

@@ -48,6 +48,10 @@ export const site = {
     e164: "+17032433080",
   },
 
+  /** Public contact email, provided by the owner (Oct 2026). Mail for the
+   *  domain is hosted on Microsoft 365. */
+  email: "support@tabmotorsarlington.com",
+
   address: {
     street: "4035 Langston Blvd",
     city: "Arlington",

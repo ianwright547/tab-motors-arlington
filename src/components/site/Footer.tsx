@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Clock, MapPin, Phone } from "lucide-react";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "./Logo";
 import { navLinks } from "./nav";
 import { services } from "@/lib/services";
@@ -47,6 +47,12 @@ export function Footer() {
                 <Phone className="mt-0.5 size-4 shrink-0 text-brand-500" aria-hidden />
                 <a href={telHref(site.phone.e164)} className="hover:text-white hover:underline">
                   {site.phone.display}
+                </a>
+              </li>
+              <li className="flex gap-2.5">
+                <Mail className="mt-0.5 size-4 shrink-0 text-brand-500" aria-hidden />
+                <a href={`mailto:${site.email}`} className="break-all hover:text-white hover:underline">
+                  {site.email}
                 </a>
               </li>
               <li className="flex gap-2.5">

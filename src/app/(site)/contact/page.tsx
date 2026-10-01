@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BadgeCheck, Clock, CreditCard, MapPin, Phone, ShieldCheck } from "lucide-react";
+import { BadgeCheck, Clock, CreditCard, Mail, MapPin, Phone, ShieldCheck } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { ButtonAnchor, ButtonLink } from "@/components/ui/Button";
 import { FaqSection } from "@/components/site/FaqSection";
@@ -51,6 +51,24 @@ export default function ContactPage() {
                 </dd>
                 <dd className="mt-1.5 text-sm text-ink-500">
                   During shop hours this is always the quickest way to reach us.
+                </dd>
+              </div>
+            </div>
+
+            <div className="flex gap-3.5">
+              <Mail className="mt-0.5 size-5 shrink-0 text-brand-600" aria-hidden />
+              <div>
+                <dt className="font-semibold text-ink-900">Email</dt>
+                <dd className="mt-1">
+                  <a
+                    href={`mailto:${site.email}`}
+                    className="break-all font-semibold text-brand-700 underline underline-offset-2"
+                  >
+                    {site.email}
+                  </a>
+                </dd>
+                <dd className="mt-1.5 text-sm text-ink-500">
+                  Good for questions that aren&apos;t urgent. We reply during shop hours.
                 </dd>
               </div>
             </div>

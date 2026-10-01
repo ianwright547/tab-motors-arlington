@@ -160,8 +160,15 @@ export default function AboutPage() {
                 className="font-semibold text-brand-700 underline underline-offset-2"
               >
                 Send us the details
-              </Link>{" "}
-              or call {site.phone.display}.
+              </Link>
+              , call {site.phone.display}, or email{" "}
+              <a
+                href={`mailto:${site.email}`}
+                className="font-semibold text-brand-700 underline underline-offset-2"
+              >
+                {site.email}
+              </a>
+              .
             </p>
           </div>
         </div>
