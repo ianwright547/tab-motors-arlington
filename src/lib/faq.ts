@@ -13,7 +13,7 @@ export const generalFaq: Faq[] = [
   },
   {
     q: "Do you do Virginia state inspection and emissions here?",
-    a: "Yes, we're an official Virginia inspection and emissions station right on Langston Blvd in Arlington. We can do both in one visit.",
+    a: "Yes, we're an official Virginia inspection and emissions station right on Old Dominion Dr in Arlington. We can do both in one visit.",
   },
   {
     q: "What kinds of vehicles do you work on?",

@@ -36,7 +36,7 @@ export const site = {
 
   description:
     "TAB Motors Arlington is a full-service auto repair shop and Exxon station on " +
-    "Langston Blvd. Virginia state inspections, emissions, brakes, diagnostics and " +
+    "Old Dominion Dr. Virginia state inspections, emissions, brakes, diagnostics and " +
     "honest service for every make, including hybrids and EVs.",
 
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://tabmotorsarlington.com",
@@ -52,8 +52,9 @@ export const site = {
    *  domain is hosted on Microsoft 365. */
   email: "support@tabmotorsarlington.com",
 
+  /** Agency owner confirmed Google address on October 6, 2026. Supersedes the earlier Langston address. */
   address: {
-    street: "4035 Langston Blvd",
+    street: "4035 Old Dominion Dr",
     city: "Arlington",
     state: "VA",
     zip: "22207",
@@ -113,7 +114,7 @@ export const site = {
    *  complaints and phone calls meant for the DC shop with the same name. */
   disclaimer:
     "TAB Motors Arlington is an independently owned and operated repair shop at " +
-    "4035 Langston Blvd, Arlington, VA. We are not affiliated with any similarly " +
+    "4035 Old Dominion Dr, Arlington, VA. We are not affiliated with any similarly " +
     "named business at another location.",
 
   /** Confirmed by the owner: this is an official Virginia inspection station,
@@ -162,8 +163,8 @@ export const site = {
     certifications: [] as string[],
     /** Waiting room, shuttle, loaner, after-hours key drop. */
     amenities: [] as string[],
-    /** Google Business Profile review URL, once claimed. */
-    googleReviewUrl: null as string | null,
+    /** Official review link read from the verified Google profile, October 6, 2026. */
+    googleReviewUrl: "https://g.page/r/CeUomxbux335EBM/review" as string | null,
   },
 } as const;
 

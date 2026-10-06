@@ -25,7 +25,7 @@ export default function ReviewsPage() {
       <PageHero
         eyebrow="Reviews"
         title="What Arlington drivers say"
-        intro={`${ratingValue} stars from ${reviewCount}+ Google reviews. Every word below is a real customer's — quoted exactly as they wrote it.`}
+        intro={`${ratingValue} stars from ${reviewCount} Google reviews, checked October 6, 2026. Read customer feedback or share your own experience.`}
         breadcrumbs={[{ label: "Reviews" }]}
       />
 
@@ -69,7 +69,7 @@ export default function ReviewsPage() {
               <div className="mt-4 border-t border-ink-100 pt-3">
                 <p className="text-sm font-semibold text-ink-900">{review.author}</p>
                 <p className="text-xs text-ink-500">
-                  {review.city} · {review.when}
+                  {review.city}
                 </p>
               </div>
             </li>
@@ -79,17 +79,15 @@ export default function ReviewsPage() {
         <div className="mt-10 rounded-xl border border-ink-200 bg-ink-50 p-5">
           <h2 className="font-display text-lg font-semibold">Already a customer?</h2>
           <p className="mt-2 text-sm leading-relaxed text-ink-600">
-            A review genuinely helps a small shop more than anything else. If we did right by
-            you,{" "}
-            {reviewUrl ? "leave one above — it takes a minute." : "ask us for the review link next time you're in."}{" "}
-            If we got something wrong, we&apos;d rather hear it directly —{" "}
+            We welcome honest feedback from every customer. Use the review link above to
+            share your experience, whatever it was. You can also{" "}
             <Link
               href="/contact"
               className="font-semibold text-brand-700 underline underline-offset-2"
             >
               get in touch
             </Link>{" "}
-            and we&apos;ll put it right.
+            if you want to discuss your visit with the shop.
           </p>
         </div>
       </section>

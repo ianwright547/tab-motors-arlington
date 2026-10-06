@@ -14,7 +14,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About Our Shop",
   description:
-    "An independent, AAA Approved auto repair shop on Langston Blvd in Arlington, VA. " +
+    "An independent, AAA Approved auto repair shop on Old Dominion Dr in Arlington, VA. " +
     "Official Virginia inspection station serving all makes, including hybrids and EVs.",
   alternates: { canonical: "/about" },
 };
@@ -29,7 +29,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About us"
         title="An independent shop that explains itself"
-        intro="We're a full-service repair shop on Langston Blvd in North Arlington. Not a chain, not a dealer, which means the person who diagnoses your car is the person who fixes it."
+        intro="We're a full-service repair shop on Old Dominion Dr in North Arlington. Not a chain, not a dealer, which means the person who diagnoses your car is the person who fixes it."
         breadcrumbs={[{ label: "About" }]}
       />
 
@@ -66,7 +66,7 @@ export default function AboutPage() {
               bay, so a first-time customer knows what to look for. */}
           <ShopPhoto
             src="/images/storefront.jpg"
-            alt="The TAB Motors Arlington front entrance at 4035 Langston Blvd, with the TAB Motors window sign, an open service bay and a car on the lift"
+            alt="The TAB Motors Arlington front entrance at 4035 Old Dominion Dr, with the TAB Motors window sign, an open service bay and a car on the lift"
             className="min-h-72 lg:min-h-[28rem]"
             sizes="(max-width: 1024px) 100vw, 40vw"
           />

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "Auto Repair Services in Arlington, VA",
   description:
     "Brakes, diagnostics, Virginia state inspection, emissions, A/C, transmission, " +
-    "electrical, hybrid and EV service. AAA Approved auto repair on Langston Blvd in Arlington.",
+    "electrical, hybrid and EV service. AAA Approved auto repair on Old Dominion Dr in Arlington.",
   alternates: { canonical: "/services" },
 };
 
@@ -25,7 +25,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="What we do"
         title="Auto repair services in Arlington"
-        intro="Everything below happens in our own bays on Langston Blvd. We diagnose first, quote second, and don't start work until you've said yes to the price."
+        intro="Everything below happens in our own bays on Old Dominion Dr. We diagnose first, quote second, and don't start work until you've said yes to the price."
         breadcrumbs={[{ label: "Services" }]}
       />
 

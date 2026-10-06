@@ -33,13 +33,13 @@ export function QuoteCta({
         </div>
 
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <ButtonLink href={href} size="lg" className="sm:min-w-52">
-            Get a free quote
-          </ButtonLink>
-          <ButtonAnchor href={telHref(site.phone.e164)} variant="outlineOnDark" size="lg">
+          <ButtonAnchor href={telHref(site.phone.e164)} size="lg">
             <Phone className="size-4" aria-hidden />
-            {site.phone.display}
+            Call {site.phone.display}
           </ButtonAnchor>
+          <ButtonLink href={href} variant="outlineOnDark" size="lg" className="sm:min-w-52">
+            Request a quote online
+          </ButtonLink>
         </div>
 
         <p className="mt-5 text-sm text-ink-400">

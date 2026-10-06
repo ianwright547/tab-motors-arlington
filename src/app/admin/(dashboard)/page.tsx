@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { and, count, desc, eq, ilike, isNull, or, type SQL } from "drizzle-orm";
+import { and, count, desc, eq, ilike, isNull, lt, or, type SQL } from "drizzle-orm";
 import { Inbox, Paperclip, Phone, Search } from "lucide-react";
 import { getDb } from "@/lib/db";
 import { leadAttachments, leads, type LeadStatus } from "@/lib/db/schema";
@@ -61,7 +61,7 @@ export default async function AdminLeadsPage({
     if (combined) filters.push(combined);
   }
 
-  const [rows, statusCounts, attachmentCounts] = await Promise.all([
+  const [rows, statusCounts, attachmentCounts, overdueCounts] = await Promise.all([
     db
       .select()
       .from(leads)
@@ -73,11 +73,16 @@ export default async function AdminLeadsPage({
       .select({ leadId: leadAttachments.leadId, value: count() })
       .from(leadAttachments)
       .groupBy(leadAttachments.leadId),
+    db.select({ value: count() }).from(leads).where(and(
+      eq(leads.status, "new"),
+      lt(leads.createdAt, new Date(Date.now() - 24 * 60 * 60 * 1000)),
+    )),
   ]);
 
   const countByStatus = new Map(statusCounts.map((row) => [row.status, Number(row.value)]));
   const total = statusCounts.reduce((sum, row) => sum + Number(row.value), 0);
   const photosByLead = new Map(attachmentCounts.map((row) => [row.leadId, Number(row.value)]));
+  const overdue = Number(overdueCounts[0]?.value ?? 0);
 
   return (
     <div>
@@ -117,6 +122,14 @@ export default async function AdminLeadsPage({
           </button>
         </form>
       </div>
+
+      {overdue > 0 && (
+        <aside aria-label="Follow-up reminder" className="mt-5 rounded-xl border border-warn-300 bg-warn-100 p-4 text-warn-700">
+          <h2 className="font-semibold">{overdue} {overdue === 1 ? "request is" : "requests are"} still marked new after 24 hours</h2>
+          <p className="mt-1 text-sm">Check whether these customers received a reply. Contact anyone still waiting, then update their status so the next shift knows what happened.</p>
+          <Link href="/admin?status=new" className="mt-2 inline-flex min-h-10 items-center font-semibold underline">Review new requests</Link>
+        </aside>
+      )}
 
       <nav aria-label="Filter by status" className="mt-5 flex flex-wrap gap-2">
         <FilterPill href={buildHref(null, query)} active={!activeStatus} label="All" count={total} />

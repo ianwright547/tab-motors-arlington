@@ -23,7 +23,7 @@ export default function ServiceAreasPage() {
       <PageHero
         eyebrow="Where we work"
         title="Auto repair across Arlington & Northern Virginia"
-        intro="We're on Langston Blvd in North Arlington, an easy trip from the neighborhoods and towns below. Same honest pricing and same-day service, whichever side of the county you're on."
+        intro="We're on Old Dominion Dr in North Arlington, an easy trip from the neighborhoods and towns below. Same honest pricing and same-day service, whichever side of the county you're on."
         breadcrumbs={[{ label: "Service Areas" }]}
       />
 

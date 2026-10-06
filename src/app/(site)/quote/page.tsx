@@ -5,6 +5,7 @@ import { QuoteForm } from "@/components/quote/QuoteForm";
 import { uploadsEnabled } from "@/lib/uploads";
 import { formatHoursSummary, site } from "@/lib/site";
 import { telHref } from "@/lib/format";
+import { ButtonAnchor } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "Get a Free Quote",
@@ -29,6 +30,11 @@ export default function QuotePage() {
             Four short steps, about two minutes. We'll review the details and come back with a
             price and a time we can take it, with no obligation either way.
           </p>
+          <ButtonAnchor href={telHref(site.phone.e164)} size="lg" className="mt-5">
+            <Phone className="size-4" aria-hidden />
+            Prefer to call? {site.phone.display}
+          </ButtonAnchor>
+          <p className="mt-3 text-sm text-ink-300">Mon–Fri 7–6 · Sat 7–3. Online requests are reviewed during shop hours.</p>
         </div>
         <div aria-hidden className="hazard-stripe h-1.5" />
       </section>
