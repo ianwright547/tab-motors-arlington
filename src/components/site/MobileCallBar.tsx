@@ -32,14 +32,14 @@ export function MobileCallBar() {
       <div className="grid grid-cols-2 gap-2 p-2.5 pb-[max(0.625rem,env(safe-area-inset-bottom))]">
         <a
           href={telHref(site.phone.e164)}
-          className="flex min-h-12 items-center justify-center gap-2 rounded-md border border-white/20 text-[0.9375rem] font-semibold text-white transition-colors active:bg-white/10"
+          className="flex min-h-12 items-center justify-center gap-2 rounded-md bg-brand-600 text-[0.9375rem] font-semibold text-white transition-colors active:bg-brand-700"
         >
-          <Phone className="size-4 text-brand-400" aria-hidden />
+          <Phone className="size-4" aria-hidden />
           Call now
         </a>
         <Link
           href="/quote"
-          className="flex min-h-12 items-center justify-center rounded-md bg-brand-600 text-[0.9375rem] font-semibold text-white transition-colors active:bg-brand-700"
+          className="flex min-h-12 items-center justify-center rounded-md border border-white/20 text-[0.9375rem] font-semibold text-white transition-colors active:bg-white/10"
         >
           Free quote
         </Link>

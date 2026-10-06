@@ -1,18 +1,14 @@
 import { Star } from "lucide-react";
-import { site } from "@/lib/site";
 import { ratingValue, reviewCount } from "@/lib/reviews";
 
 /**
- * Floating Google reviews badge, pinned bottom-right.
+ * Google reviews badge: inline on phones, pinned bottom-right on desktop.
  *
- * Small social-proof chip that follows the visitor as they scroll — the 4.9
- * star rating with a live link to the shop's Google profile. On phones it sits
- * higher up the screen so it clears the fixed call/quote bar at the bottom.
+ * Keeps customer feedback reachable without obscuring mobile page content.
  */
 export function GoogleReviewBadge() {
-  const href = site.toConfirm.googleReviewUrl
-    ? site.toConfirm.googleReviewUrl
-    : `https://www.google.com/maps/search/?api=1&query=${site.address.mapsQuery}`;
+  // Reading reviews and writing a review are different customer actions.
+  const href = "https://www.google.com/maps?cid=17977745112928299237";
 
   return (
     <a
@@ -20,7 +16,7 @@ export function GoogleReviewBadge() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Read our ${ratingValue}-star Google reviews`}
-      className="group fixed bottom-[calc(5rem+env(safe-area-inset-bottom))] right-4 z-40 flex items-center gap-2.5 rounded-full border border-ink-200 bg-white/95 px-3.5 py-2 shadow-lg shadow-ink-950/10 backdrop-blur transition-transform hover:-translate-y-0.5 hover:shadow-xl lg:bottom-5 lg:right-5 lg:gap-3 lg:px-4 lg:py-2.5 print:hidden"
+      className="group mx-5 my-4 flex w-fit lg:fixed lg:z-40 lg:mx-0 lg:my-0 items-center gap-2.5 rounded-full border border-ink-200 bg-white/95 px-3.5 py-2 shadow-lg shadow-ink-950/10 backdrop-blur transition-transform hover:-translate-y-0.5 hover:shadow-xl lg:bottom-5 lg:right-5 lg:gap-3 lg:px-4 lg:py-2.5 print:hidden"
     >
       {/* Google "G" */}
       <svg className="size-6 shrink-0" viewBox="0 0 24 24" aria-hidden>

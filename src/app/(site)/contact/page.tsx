@@ -30,7 +30,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Find us"
         title="Contact & directions"
-        intro="We're on Langston Blvd in North Arlington. Call during shop hours for the fastest answer, or send us the details any time."
+        intro="We're on Old Dominion Dr in North Arlington. Call during shop hours for the fastest answer, or send us the details any time."
         breadcrumbs={[{ label: "Contact" }]}
       />
 

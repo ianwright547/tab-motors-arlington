@@ -13,11 +13,13 @@ export function PageHero({
   title,
   intro,
   breadcrumbs,
+  children,
 }: {
   eyebrow?: string;
   title: string;
   intro?: string;
   breadcrumbs?: { label: string; href?: string }[];
+  children?: React.ReactNode;
 }) {
   return (
     <section className="bg-ink-950 text-white">
@@ -63,6 +65,7 @@ export function PageHero({
         {intro && (
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-300 sm:text-xl">{intro}</p>
         )}
+        {children}
       </div>
       <div aria-hidden className="hazard-stripe h-1.5" />
     </section>

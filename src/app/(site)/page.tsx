@@ -117,18 +117,17 @@ export default function HomePage() {
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/quote" size="lg" className="sm:min-w-56">
-                Get a free quote
-              </ButtonLink>
               <ButtonAnchor
                 href={telHref(site.phone.e164)}
-                variant="outlineOnDark"
                 size="lg"
-                className="bg-ink-950/50 backdrop-blur-sm"
+                className="sm:min-w-56"
               >
                 <Phone className="size-4" aria-hidden />
-                {site.phone.display}
+                Call {site.phone.display}
               </ButtonAnchor>
+              <ButtonLink href="/quote" variant="outlineOnDark" size="lg">
+                Request a quote online
+              </ButtonLink>
             </div>
 
             <p className="mt-4 text-sm text-ink-300">
@@ -280,7 +279,7 @@ export default function HomePage() {
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/quote?service=virginia-state-inspection" size="lg">
-                Book an inspection
+                Request an inspection
               </ButtonLink>
               <ButtonAnchor
                 href={telHref(site.phone.e164)}
@@ -391,7 +390,7 @@ export default function HomePage() {
         <div className="container-page">
           <p className="eyebrow text-brand-700">Inside the shop</p>
           <h2 className="mt-3 max-w-2xl font-display text-4xl font-bold uppercase leading-[0.98] tracking-tight sm:text-5xl">
-            A real shop on Langston Blvd
+            A real shop on Old Dominion Dr
           </h2>
           <div className="mt-9 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
             <ShopPhoto
@@ -442,7 +441,7 @@ export default function HomePage() {
           <Reveal>
             <p className="eyebrow text-brand-700">Find us</p>
             <h2 className="mt-3 font-display text-4xl font-bold uppercase leading-[0.95] tracking-[-0.02em] sm:text-5xl">
-              On Langston Blvd
+              On Old Dominion Dr
               <br className="hidden sm:block" /> in North Arlington
             </h2>
 

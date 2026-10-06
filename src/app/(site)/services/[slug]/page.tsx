@@ -59,7 +59,21 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         title={service.h1}
         intro={service.heroText}
         breadcrumbs={trail}
-      />
+      >
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+          <ButtonAnchor href={telHref(site.phone.e164)} size="lg">
+            <Phone className="size-4" aria-hidden />
+            {service.inspection ? "Call about inspection availability" : "Call to discuss your repair"}
+          </ButtonAnchor>
+          <ButtonLink href={`/quote?service=${service.slug}`} variant="outlineOnDark" size="lg">
+            Request a quote online
+          </ButtonLink>
+        </div>
+        <p className="mt-4 text-sm text-ink-300">
+          {site.phone.display} · Mon–Fri 7–6 · Sat 7–3
+          {service.inspection && ". Call to confirm an inspector is available before travelling."}
+        </p>
+      </PageHero>
 
       <div className="container-page grid gap-10 py-14 md:py-16 lg:grid-cols-[1.5fr_1fr] lg:gap-14">
         <div>
@@ -120,8 +134,10 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 </p>
                 <ul className="mt-5 space-y-2.5 rounded-lg border border-ink-200 bg-ink-50 p-5 text-[0.9375rem] text-ink-700">
                   <li>
-                    <strong className="text-ink-900">The test fee</strong> is set by the
-                    Commonwealth and is the same at every official station.
+                    <strong className="text-ink-900">The test fee</strong>{" "}
+                    {service.slug === "virginia-emissions-inspection"
+                      ? "is capped at $30 by Virginia law. Call to confirm the shop’s fee."
+                      : "is regulated by Virginia. The standard passenger-vehicle safety inspection fee is $20; other vehicle classes have different fees."}
                   </li>
                   <li>
                     <strong className="text-ink-900">Any repair</strong> is a separate job,
@@ -380,23 +396,23 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         <aside className="space-y-4 lg:sticky lg:top-28 lg:self-start">
           <div className="rounded-xl border border-ink-200 bg-white p-5 shadow-card">
             <h2 className="font-display text-lg font-semibold">
-              Get a quote for {service.name.toLowerCase()}
+            {service.inspection ? "Check inspection availability" : `Talk to us about ${service.name.toLowerCase()}`}
             </h2>
             <p className="mt-2 text-sm text-ink-600">
-              We&apos;ll have this service already selected for you. Just tell us about the
-              vehicle.
+              {service.inspection
+                ? "Call to check the current queue, inspector availability and fee before you set off."
+                : "Tell us your vehicle and what you have noticed. We will explain the next step and quote repairs before work starts."}
             </p>
-            <ButtonLink href={`/quote?service=${service.slug}`} size="lg" className="mt-4 w-full">
-              Start my free quote
-            </ButtonLink>
             <ButtonAnchor
               href={telHref(site.phone.e164)}
-              variant="outline"
-              className="mt-2.5 w-full"
+              className="mt-4 w-full"
             >
               <Phone className="size-4" aria-hidden />
               {site.phone.display}
             </ButtonAnchor>
+            <ButtonLink href={`/quote?service=${service.slug}`} variant="outline" className="mt-2.5 w-full">
+              Request a quote online
+            </ButtonLink>
           </div>
 
           <div className="rounded-xl border border-ink-200 bg-ink-50 p-5">

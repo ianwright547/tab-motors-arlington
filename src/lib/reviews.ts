@@ -17,4 +17,5 @@ export const reviews: Review[] = [
 ];
 
 export const ratingValue = "4.9";
-export const reviewCount = "60";
+/** Public Google profile checked October 6, 2026. A maintained snapshot. */
+export const reviewCount = "72";
