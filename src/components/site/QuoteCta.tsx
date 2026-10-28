@@ -12,7 +12,7 @@ import { telHref } from "@/lib/format";
  */
 export function QuoteCta({
   heading = "Want a price before you commit?",
-  body = "Tell us what's going on and we'll come back with a quote. Takes about two minutes, and there's no obligation.",
+  body = "Tell us what's going on and we'll come back with a quote. Two short steps, with no obligation. We review requests during shop hours; a request is not a confirmed appointment.",
   serviceSlug,
 }: {
   heading?: string;
@@ -43,7 +43,8 @@ export function QuoteCta({
         </div>
 
         <p className="mt-5 text-sm text-ink-400">
-          {site.aaa.memberBenefit} · {site.warranty.label} · {site.financing.short}
+          {site.aaa.memberBenefit} · {site.warranty.label} · {site.financing.short}.{" "}
+          <a href="#aaa-member-terms" className="text-ink-200 underline underline-offset-4">AAA terms apply.</a>
         </p>
       </div>
     </section>

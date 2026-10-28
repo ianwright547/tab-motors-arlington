@@ -13,8 +13,6 @@ export const dynamic = "force-static";
 type Entry = { path: string; priority: number; changefreq: string };
 
 export function GET() {
-  const now = new Date().toISOString();
-
   const entries: Entry[] = [
     { path: "/", priority: 1.0, changefreq: "monthly" },
     { path: "/quote", priority: 0.9, changefreq: "monthly" },
@@ -42,7 +40,6 @@ export function GET() {
     .map(
       (e) => `  <url>
     <loc>${site.url}${e.path === "/" ? "" : e.path}</loc>
-    <lastmod>${now}</lastmod>
     <changefreq>${e.changefreq}</changefreq>
     <priority>${e.priority.toFixed(1)}</priority>
   </url>`,

@@ -93,6 +93,8 @@ export const site = {
   aaa: {
     approved: true,
     memberBenefit: "AAA members get 10% off labor, up to $75",
+    terms: "Excludes scheduled maintenance, tires and tire service. Cannot be combined with another special or coupon. Present a valid AAA membership card at the time of service.",
+    listingUrl: "https://www.aaa.com/autorepair/shop/arlington-exxon-tab-motors-116496",
   },
 
   /** Neighborhoods and towns within a realistic drive. Used on the service

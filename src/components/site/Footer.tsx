@@ -118,7 +118,19 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/10 pt-8">
+        <details id="aaa-member-terms" className="mt-10 scroll-mt-28 border-t border-white/10 pt-6 text-sm">
+          <summary className="cursor-pointer py-2 font-semibold text-ink-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-400">
+            AAA member discount terms
+          </summary>
+          <p className="mt-2 max-w-3xl leading-relaxed text-ink-300">
+            {site.aaa.memberBenefit}. {site.aaa.terms}
+          </p>
+          <a href={site.aaa.listingUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block py-2 font-semibold text-brand-300 underline underline-offset-4">
+            View the AAA benefit listing
+          </a>
+        </details>
+
+        <div className="mt-8 border-t border-white/10 pt-8">
           {/* Kept prominent on purpose. The similarly named DC shop means
               misdirected calls, reviews and complaints are a real risk. */}
           <p className="max-w-3xl text-xs leading-relaxed text-ink-500">{site.disclaimer}</p>

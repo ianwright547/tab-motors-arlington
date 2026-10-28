@@ -66,7 +66,7 @@ function lines(lead: Lead): [string, string][] {
   ];
 
   if (lead.preferredDate) rows.push(["Preferred date", lead.preferredDate]);
-  if (lead.aaaMember) rows.push(["AAA member", "Yes, 10% off labor applies"]);
+  if (lead.aaaMember) rows.push(["AAA member", "Yes — check eligible labor and AAA benefit terms"]);
   if (lead.referralSource) rows.push(["Heard about us", lead.referralSource]);
   if (lead.problemDescription) rows.push(["Describes the problem", lead.problemDescription]);
   rows.push(["Submitted", formatDateTime(lead.createdAt)]);

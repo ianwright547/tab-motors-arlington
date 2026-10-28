@@ -27,14 +27,14 @@ export default function QuotePage() {
             Tell us what's going on with your car
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-ink-300">
-            Four short steps, about two minutes. We'll review the details and come back with a
-            price and a time we can take it, with no obligation either way.
+            Two short steps: your contact details, then your vehicle and what it needs. We review
+            requests during shop hours and contact you to discuss the next step.
           </p>
           <ButtonAnchor href={telHref(site.phone.e164)} size="lg" className="mt-5">
             <Phone className="size-4" aria-hidden />
             Prefer to call? {site.phone.display}
           </ButtonAnchor>
-          <p className="mt-3 text-sm text-ink-300">Mon–Fri 7–6 · Sat 7–3. Online requests are reviewed during shop hours.</p>
+          <p className="mt-3 text-sm text-ink-300">Mon–Fri 7–6 · Sat 7–3. A request does not reserve an appointment. Call for urgent questions or inspection availability.</p>
         </div>
         <div aria-hidden className="hazard-stripe h-1.5" />
       </section>
@@ -56,7 +56,7 @@ export default function QuotePage() {
               <li className="flex gap-3">
                 <Receipt className="mt-0.5 size-4.5 shrink-0 text-brand-600" aria-hidden />
                 <span className="text-ink-600">
-                  <strong className="font-semibold text-ink-900">A real quote, not a range.</strong>{" "}
+                  <strong className="font-semibold text-ink-900">A price you approve before repairs.</strong>{" "}
                   If we need to see the car before we can price it accurately, we'll say so
                   instead of guessing.
                 </span>

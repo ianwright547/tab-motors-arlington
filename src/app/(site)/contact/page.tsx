@@ -128,6 +128,7 @@ export default function ContactPage() {
               <BadgeCheck className="size-5 text-brand-700" aria-hidden />
               <h2 className="mt-2 text-sm font-bold text-brand-900">AAA Approved</h2>
               <p className="mt-1 text-sm text-brand-800">{site.aaa.memberBenefit}.</p>
+              <a href="#aaa-member-terms" className="mt-2 inline-block text-sm font-semibold text-brand-800 underline underline-offset-4">Exclusions and terms</a>
             </div>
             <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
               <ShieldCheck className="size-5 text-ink-700" aria-hidden />

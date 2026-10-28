@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Star } from "lucide-react";
-import { ratingValue, reviewCount, reviews as allReviews } from "@/lib/reviews";
+import { ratingValue, reviewCount, reviews as allReviews, reviewsCheckedOn } from "@/lib/reviews";
 
 /**
  * Real Google reviews, quoted word-for-word. Shown on the home page and anywhere
@@ -37,6 +37,7 @@ export function ReviewsSection({
                 {ratingValue} · {reviewCount}+ Google reviews
               </span>
             </div>
+            <p className="mt-2 text-sm text-ink-600">Google review snapshot checked {reviewsCheckedOn}.</p>
           </div>
           <Link
             href="/reviews"

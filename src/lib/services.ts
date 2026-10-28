@@ -79,11 +79,11 @@ export const services: Service[] = [
     navLabel: "VA State Inspection",
     formLabel: "VA State Inspection",
     blurb: "Your Virginia State Safety Inspection, done right the first time.",
-    heroText: "Your Virginia State Safety Inspection, done right the first time. TAB Motors is an official inspection station on Old Dominion Dr in Arlington, most cars are in and out the same day.",
+    heroText: "Your Virginia State Safety Inspection, done right the first time. TAB Motors is an official inspection station on Old Dominion Dr in Arlington. Walk-ins are welcome; call to check the queue and inspector availability before you travel.",
     metaTitle: "Virginia State Inspection in Arlington, VA | TAB Motors Exxon",
     metaDescription: `Official Virginia State Safety Inspection in Arlington, VA at TAB Motors | Exxon on Old Dominion Dr. Fast, honest, while-you-wait. Call ${site.phone.display}.`,
     features: ["Official VA inspection station", "Honest pass/fail, no scare tactics", "While-you-wait, most vehicles"],
-    faq: [{"q": "How long does a Virginia state inspection take?", "a": `Most passenger vehicles are done while you wait, typically under an hour when we're not backed up. Call ahead at ${site.phone.display} and we'll tell you the best time to come in.`}, {"q": "How much is a Virginia safety inspection?", "a": "Virginia sets the maximum inspection fee, so it's a small, fixed cost. We charge the standard state rate, call for the current amount."}, {"q": "What happens if my car fails inspection?", "a": "You get a rejection sticker and 15 days to repair the failed items. We'll show you exactly what failed and can usually fix it the same day so you leave with a passing sticker."}, {"q": "Do I need an appointment?", "a": "Walk-ins are welcome for inspections, but calling ahead means less waiting. Mornings are usually the quickest."}, {"q": "Do you do emissions inspection too?", "a": "Yes. Arlington is in the Northern Virginia emissions region, and we handle both the safety inspection and the emissions test in one visit."}],
+    faq: [{"q": "How long does a Virginia state inspection take?", "a": `Most passenger vehicles are done while you wait, typically under an hour when we're not backed up. Call ahead at ${site.phone.display} and we'll tell you the best time to come in.`}, {"q": "How much is a Virginia safety inspection?", "a": "Virginia sets a maximum fee of $20 for a standard passenger-vehicle safety inspection. Other vehicle classes have different maximum fees. Repairs are separate and require your approval."}, {"q": "What happens if my car fails inspection?", "a": "You get a rejection sticker and 15 days to repair the failed items. We'll show you exactly what failed and can usually fix it the same day so you leave with a passing sticker."}, {"q": "Do I need an appointment?", "a": "Walk-ins are welcome. Call ahead to check the current queue and inspector availability; an online request does not reserve a time."}, {"q": "Do you do emissions inspection too?", "a": "Yes. Arlington is in the Northern Virginia emissions region, and we handle both the safety inspection and the emissions test in one visit."}],
     group: 1,
     featured: true,
     icon: ClipboardCheck,
@@ -92,7 +92,7 @@ export const services: Service[] = [
     symptoms: [],
     inspection: {
       feeNote:
-        `The Virginia safety inspection is a regulated test with a fee set by state law, not a repair we quote. Under the Code of Virginia the fee is fixed by vehicle class, so it is the same at every official station in the Commonwealth and does not change based on what your car turns out to need. Call ${site.phone.display} for the current inspection fee and we will tell you the exact amount before you come in. Any repair is a separate job with its own price.`,
+        "Virginia’s maximum safety inspection fee is $20 for standard passenger vehicles, $12 for motorcycles and autocycles, and $51 for the heavy trucks and buses listed by Virginia State Police. Repairs are separate and quoted before work starts.",
       whoNeeds:
         "Every vehicle registered in Virginia needs a valid safety inspection sticker, and the inspection is due once a year. If you are new to the Commonwealth, you need one when you register the vehicle here. The sticker on your windshield shows the month it expires in the center and the year around the edge, and it is good through the end of that month.",
       whatsChecked: [
@@ -109,9 +109,9 @@ export const services: Service[] = [
         "Anything you already know is wrong, so we can look at it in the same visit",
       ],
       scheduling:
-        `Walk-ins are welcome for inspections. You do not need an appointment, but calling ${site.phone.display} ahead means less waiting, and mornings are usually the quickest time to come in.`,
+        `Walk-ins are welcome. Call ${site.phone.display} to check the queue and inspector availability before travelling. An online request does not reserve a time.`,
       ifItFails:
-        "You get a rejection sticker instead of a pass, and the inspector writes up exactly which items failed. Under Virginia regulation a rejection sticker is valid for 15 calendar days from the day it is issued. We show you the part, explain why it failed, and quote the repair before we touch anything. Because we are a full repair shop as well as an official inspection station, most failures can be fixed here the same day instead of sending you to a second shop. You are free to have the repair done elsewhere.",
+        "You get a rejection sticker instead of a pass, and the inspector writes up exactly which items failed. The rejection period includes 15 days in addition to the inspection day. A rejection sticker does not make an unsafe vehicle legal to drive. We show you the part, explain why it failed, and quote the repair before we touch anything. Because we are a full repair shop as well as an official inspection station, most failures can be fixed here the same day instead of sending you to a second shop. You are free to have the repair done elsewhere.",
       reinspection:
         "If the vehicle comes back to the station that rejected it, within the rejection sticker's validity period, state law caps what may be charged for the reinspection at a nominal amount rather than a second full inspection fee. Ask us at the counter and we will confirm what applies to your vehicle.",
     },
@@ -136,7 +136,7 @@ export const services: Service[] = [
     symptoms: [],
     inspection: {
       feeNote:
-        `The emissions test is a regulated test with a maximum fee set by state law, not a repair estimate. The Code of Virginia caps what any station in the program may charge for an emissions inspection, so the test itself does not cost more because your car is older or bigger. Call ${site.phone.display} for the current test fee. If the car fails, the repair is a separate job that we quote separately before starting.`,
+        "Virginia caps the Northern Virginia emissions test fee at $30. Call to confirm the shop’s test fee and availability. Any repair is a separate job, quoted for your approval before work starts.",
       whoNeeds:
         "Arlington sits inside the Northern Virginia emissions program, along with Fairfax, Loudoun, Prince William and Stafford counties and the cities of Alexandria, Fairfax, Falls Church, Manassas and Manassas Park. Most gasoline vehicles registered here need an emissions test every two years to renew registration. Vehicles from the current model year and the three model years before it are exempt, and so are gasoline vehicles more than 25 model years old. Diesels and some other categories have their own rules. If you are not sure which applies to you, call with your year and model and we will check.",
       whatsChecked: [
@@ -154,7 +154,7 @@ export const services: Service[] = [
       scheduling:
         `Walk-ins are welcome and the test itself is quick. Calling ${site.phone.display} ahead is worth it if you want your safety inspection done in the same visit, which we can do.`,
       ifItFails:
-        "An illuminated check engine light is an automatic failure, and so is a set of monitors that will not read ready. Neither is a mystery: we run engine diagnostics, find the actual cause, and quote the repair. Common causes are an oxygen sensor, a catalytic converter below efficiency, an evaporative leak (often just the gas cap) or a misfire from worn plugs or coils. You are never obliged to have the repair done here.",
+        "A check engine light commanded on can cause an emissions failure. Monitors that are not ready can mean the vehicle is rejected from testing rather than failed. We can explain the result, diagnose an underlying fault if needed, and quote any repair. Common causes are an oxygen sensor, a catalytic converter below efficiency, an evaporative leak (often just the gas cap) or a misfire from worn plugs or coils. You are never obliged to have the repair done here.",
       reinspection:
         "Under the program rules, a vehicle that fails is eligible for one free retest at the station that performed the original test, within 14 calendar days of that test. That is a state program rule rather than a TAB Motors offer, and it is a good reason to have the repair and the retest done in the same place. Ask us and we will confirm the date your free retest window closes.",
     },

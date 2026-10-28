@@ -251,37 +251,26 @@ export const quoteFormSchema = quoteBaseSchema.superRefine((data, ctx) => {
 
 /** Per-step schemas, so "Continue" only complains about the step you're on. */
 export const stepSchemas = {
-  1: quoteBaseSchema.pick({
-    vehicleYear: true,
-    vehicleMake: true,
-    vehicleModel: true,
-    vehicleMileage: true,
-  }),
-  2: quoteBaseSchema
-    .pick({ services: true, problemDescription: true })
-    .superRefine(otherRequiresDescription),
-  3: quoteBaseSchema
-    .pick({ urgency: true, preferredDate: true, dropOff: true })
-    .superRefine(preferredDateNotInPast),
-  4: quoteBaseSchema
-    .pick({
-      name: true,
-      phone: true,
-      email: true,
-      contactMethod: true,
-      aaaMember: true,
-      referralSource: true,
-    })
+  1: quoteBaseSchema
+    .pick({ name: true, phone: true, email: true, contactMethod: true })
     .superRefine(emailRequiredForEmailContact),
+  2: quoteBaseSchema
+    .pick({
+      vehicleYear: true, vehicleMake: true, vehicleModel: true, vehicleMileage: true,
+      services: true, problemDescription: true, urgency: true, preferredDate: true, dropOff: true,
+      aaaMember: true, referralSource: true, attachments: true,
+    })
+    .superRefine((data, ctx) => {
+      otherRequiresDescription(data, ctx);
+      preferredDateNotInPast(data, ctx);
+    }),
 } as const;
 
-export const TOTAL_STEPS = 4;
+export const TOTAL_STEPS = 2;
 
 export const stepMeta = [
-  { step: 1, label: "Vehicle", heading: "What are you bringing in?" },
-  { step: 2, label: "Service", heading: "What do you need done?" },
-  { step: 3, label: "Timing", heading: "When works for you?" },
-  { step: 4, label: "Contact", heading: "Where should we send the quote?" },
+  { step: 1, label: "Contact", heading: "How can we reach you?" },
+  { step: 2, label: "Vehicle & service", heading: "What does your car need?" },
 ] as const;
 
 export type QuoteFormInput = z.input<typeof quoteBaseSchema>;

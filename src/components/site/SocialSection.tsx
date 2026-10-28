@@ -59,11 +59,10 @@ export function SocialSection() {
           <Reveal>
             <p className="eyebrow text-brand-700">Follow along</p>
             <h2 className="mt-3 font-display text-4xl font-bold uppercase leading-[0.98] tracking-tight sm:text-5xl">
-              Latest from the shop
+              From the shop
             </h2>
             <p className="mt-4 max-w-xl leading-relaxed text-ink-600">
-              Specials, real work in the bays, and reminders when your Virginia
-              inspection is due. Follow{" "}
+              A look at the workshop and our Arlington neighborhood. For current updates, follow{" "}
               <span className="font-semibold text-ink-800">
                 @{socialProfiles.instagram.handle}
               </span>{" "}
@@ -87,7 +86,7 @@ export function SocialSection() {
           </Reveal>
         </div>
 
-        <ul className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5">
+        <ul className="mt-12 grid gap-4 sm:grid-cols-3 md:gap-5">
           {socialPosts.map((post, index) => {
             const { label } = platformMeta[post.platform];
             const Icon = platformIcon[post.platform];
@@ -106,7 +105,7 @@ export function SocialSection() {
                         src={post.image}
                         alt={post.caption}
                         fill
-                        sizes="(max-width: 768px) 50vw, 25vw"
+                        sizes="(max-width: 640px) 100vw, 33vw"
                         className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                       />
                       <span className="absolute right-2.5 top-2.5 inline-flex size-8 items-center justify-center rounded-lg bg-white/90 shadow-card backdrop-blur-sm">

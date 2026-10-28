@@ -7,7 +7,7 @@ import { authAttempts, leads } from "./db/schema";
  *
  * The form is layered on purpose, because each layer alone is weak:
  *   1. honeypot field       — stops naive form-filling bots
- *   2. submission timing    — stops anything that fills 4 steps in 2 seconds
+ *   2. submission timing    — stops implausibly fast complete requests
  *   3. per-IP rate limit    — stops the same source flooding the leads table
  *   4. Cloudflare Turnstile — optional, and the only one a determined bot has
  *                             real trouble with
@@ -45,7 +45,7 @@ export async function hashIp(ip: string | null): Promise<string | null> {
 // Quote form
 // ---------------------------------------------------------------------------
 
-/** Nobody legitimately completes a four-step form this fast. */
+/** A complete quote request should not arrive this fast. */
 const MIN_ELAPSED_MS = 3000;
 
 const MAX_LEADS_PER_HOUR = 5;

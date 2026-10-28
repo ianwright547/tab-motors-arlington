@@ -8,7 +8,7 @@
  * when Meta rotates its CDN URLs or a viewer is logged out.
  *
  * To feature a new post: drop its image in /public/images, then add an entry to
- * `socialPosts` below — newest first. Four reads as a clean row on desktop.
+ * `socialPosts` below — newest first. Only feature a dated promotion after its current terms have been confirmed.
  */
 
 export const socialProfiles = {
@@ -40,12 +40,6 @@ export type SocialPost = {
 };
 
 export const socialPosts: SocialPost[] = [
-  {
-    platform: "instagram",
-    image: "/images/social-oil-change.jpg",
-    caption: "Limited-time oil change special, $49.99",
-    url: "https://www.instagram.com/p/DbMbYZ7x0UN/",
-  },
   {
     platform: "instagram",
     image: "/images/social-storefront.jpg",

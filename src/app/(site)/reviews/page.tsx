@@ -4,7 +4,7 @@ import { Star } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { QuoteCta } from "@/components/site/QuoteCta";
 import { ButtonAnchor } from "@/components/ui/Button";
-import { ratingValue, reviewCount, reviews } from "@/lib/reviews";
+import { ratingValue, reviewCount, reviews, reviewsCheckedOn } from "@/lib/reviews";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -25,7 +25,7 @@ export default function ReviewsPage() {
       <PageHero
         eyebrow="Reviews"
         title="What Arlington drivers say"
-        intro={`${ratingValue} stars from ${reviewCount} Google reviews, checked October 6, 2026. Read customer feedback or share your own experience.`}
+        intro={`${ratingValue} stars from ${reviewCount} Google reviews, checked ${reviewsCheckedOn}. Read customer feedback or share your own experience.`}
         breadcrumbs={[{ label: "Reviews" }]}
       />
 

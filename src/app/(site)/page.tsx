@@ -6,7 +6,6 @@ import {
   Car,
   ClipboardCheck,
   Clock,
-  CreditCard,
   MapPin,
   Phone,
   Receipt,
@@ -20,7 +19,6 @@ import { Reveal } from "@/components/site/Reveal";
 import { LocalBusinessSchema, WebSiteSchema } from "@/components/site/StructuredData";
 import { ReviewsSection } from "@/components/site/ReviewsSection";
 import { SocialSection } from "@/components/site/SocialSection";
-import { BlogTeasers } from "@/components/site/BlogTeasers";
 import { services } from "@/lib/services";
 import { formatHoursSummary, site } from "@/lib/site";
 import { telHref } from "@/lib/format";
@@ -92,13 +90,7 @@ export default function HomePage() {
               </span>
             </div>
 
-            {/* AAA Approved — its own line below the VA inspection pill */}
-            <div className="mt-2 flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-500/40 bg-ink-950/55 px-3 py-1.5 text-[0.7rem] font-bold uppercase tracking-[0.07em] text-brand-300 backdrop-blur-sm">
-                <BadgeCheck className="size-3.5" aria-hidden />
-                AAA Approved Auto Repair
-              </span>
-            </div>
+            {/* AAA approval is already visible in the credential badge above. */}
 
             <p className="mt-5 font-display text-xs font-bold uppercase tracking-[0.18em] text-brand-300 sm:text-sm">
               Straight answers. Honest repairs.
@@ -153,21 +145,11 @@ export default function HomePage() {
             title="Quoted before we start"
             body="You approve the price before any work begins. No surprise invoices."
           />
-          <TrustItem
-            icon={ClipboardCheck}
-            title="Inspections and emissions"
-            body="An official Virginia station, so both happen in a single visit."
-          />
-          <TrustItem
-            icon={Car}
-            title="Every make, including EVs"
-            body="Domestic, Asian and European, plus hybrids, Tesla, Rivian and Lucid."
-          />
-          <TrustItem
-            icon={CreditCard}
-            title="Payment plans available"
-            body="Spread the cost of a bigger repair. Ask us about a plan that works for you."
-          />
+        </div>
+        <div className="container-page pb-8 text-sm text-ink-600">
+          <a href="#aaa-member-terms" className="font-semibold text-brand-700 underline underline-offset-4">AAA discount exclusions and terms</a>
+          <span className="mx-2" aria-hidden>·</span>
+          Payment plans available for larger repairs.
         </div>
       </section>
 
@@ -278,16 +260,13 @@ export default function HomePage() {
             </ul>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/quote?service=virginia-state-inspection" size="lg">
-                Request an inspection
-              </ButtonLink>
-              <ButtonAnchor
-                href={telHref(site.phone.e164)}
-                variant="outlineOnDark"
-                size="lg"
-              >
-                Call about walk-ins
+              <ButtonAnchor href={telHref(site.phone.e164)} size="lg">
+                <Phone className="size-4" aria-hidden />
+                Check inspection availability
               </ButtonAnchor>
+              <ButtonLink href="/services/virginia-state-inspection" variant="outlineOnDark" size="lg">
+                Plan your inspection visit
+              </ButtonLink>
             </div>
 
             <p className="mt-6">
@@ -310,17 +289,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ------------------------------------------------- Full-bleed photo band */}
-      <section aria-hidden className="relative h-52 md:h-72">
-        <Image
-          src="/images/customer-cars.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover object-[50%_60%]"
-        />
-        <div className="absolute inset-0 bg-ink-950/25" />
-      </section>
+      {/* The customer-lot photo appears in the gallery below. */}
 
       {/* ------------------------------------------------------------- Why us */}
       <section id="why-us" className="container-page py-20 md:py-28">
@@ -338,24 +307,14 @@ export default function HomePage() {
           <ul className="grid gap-5 sm:grid-cols-2">
             {[
               {
-                icon: Receipt,
-                title: "You see the price first",
-                body: "We diagnose, then quote, then wait for your yes. Nothing gets added to the bill without a conversation.",
-              },
-              {
                 icon: Wrench,
                 title: "Diagnosis, not parts roulette",
                 body: "Reading a trouble code isn't a diagnosis. We find the actual cause instead of replacing parts until the light goes out.",
               },
               {
-                icon: BadgeCheck,
-                title: "AAA held us to a standard",
-                body: "AAA Approved shops are inspected on workmanship, facilities, technician training and reputation, then re-checked to keep it.",
-              },
-              {
                 icon: Car,
-                title: "We don't turn cars away",
-                body: "German, Japanese, domestic, hybrid or fully electric, including the makes most independents won't touch.",
+                title: "Domestic, European, hybrid & electric",
+                body: "Tell us your make, model and concern. We will explain what we can check and what the next step involves.",
               },
             ].map((card, index) => (
               <li key={card.title}>
@@ -378,7 +337,7 @@ export default function HomePage() {
             <ShopPhoto
               src="/images/shop-interior.jpg"
               alt="Inside the TAB Motors Arlington workshop: an Audi raised on a Rotary lift, another on the bay floor, in a clean, well-lit shop"
-              className="min-h-80 lg:min-h-[34rem]"
+              className="min-h-64 lg:min-h-80"
               sizes="(max-width: 1024px) 100vw, 40vw"
             />
           </Reveal>
@@ -430,10 +389,14 @@ export default function HomePage() {
       <SocialSection />
 
       {/* ------------------------------------------------------------ Reviews */}
-      <ReviewsSection count={6} />
+      <ReviewsSection count={3} />
 
       {/* --------------------------------------------------------- From the blog */}
-      <BlogTeasers />
+      <div className="container-page py-8 text-center">
+        <Link href="/blog" className="inline-flex min-h-11 items-center gap-2 font-semibold text-brand-700 underline underline-offset-4">
+          Read our car-care guides <ArrowRight className="size-4" aria-hidden />
+        </Link>
+      </div>
 
       {/* ------------------------------------------------------------ Contact */}
       <section id="contact" className="container-page py-20 md:py-28">
@@ -526,8 +489,8 @@ export default function HomePage() {
             <div className="rounded-2xl bg-ink-900 p-7 text-white">
               <h3 className="font-display text-2xl font-semibold">Ready to get it sorted?</h3>
               <p className="mt-2.5 text-ink-300">
-                Send us the details and we&apos;ll come back with a quote. Takes about two
-                minutes.
+                Send us the details in two short steps. We review requests during shop hours;
+                a request does not reserve an appointment.
               </p>
               <ButtonLink href="/quote" size="lg" className="mt-5 w-full">
                 Get a free quote

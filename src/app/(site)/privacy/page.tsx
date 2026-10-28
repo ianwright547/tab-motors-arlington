@@ -85,6 +85,16 @@ export default function PrivacyPage() {
           </section>
 
           <section>
+            <h2>Unfinished quote requests</h2>
+            <p>
+              The quote form saves unfinished written details in your browser tab for up to 24 hours,
+              so a refresh does not erase your work. A saved draft is not a submitted quote request.
+              Use “Clear form” to remove it. The draft is also cleared after a successful submission.
+              Photos are uploaded separately when you select them and are not restored with a draft.
+            </p>
+          </section>
+
+          <section>
             <h2>Cookies and tracking</h2>
             <p>
               This site sets no advertising cookies and runs no third-party tracking or analytics
