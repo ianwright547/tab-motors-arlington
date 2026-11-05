@@ -6,11 +6,16 @@ import { QuoteCta } from "@/components/site/QuoteCta";
 import { ButtonAnchor } from "@/components/ui/Button";
 import { ratingValue, reviewCount, reviews, reviewsCheckedOn } from "@/lib/reviews";
 import { site } from "@/lib/site";
+import { socialTags } from "@/lib/seo";
+
+const description =
+  `Real Google reviews for ${site.name}, AAA Approved auto repair in Arlington, VA. ${ratingValue} stars from ${reviewCount}+ customers.`;
 
 export const metadata: Metadata = {
   title: { absolute: `Reviews | ${ratingValue} Stars · ${reviewCount}+ Google Reviews | TAB Motors Arlington` },
-  description: `Real Google reviews for ${site.name}, AAA Approved auto repair in Arlington, VA. ${ratingValue} stars from ${reviewCount}+ customers.`,
+  description,
   alternates: { canonical: "/reviews" },
+  ...socialTags(`TAB Motors Arlington Reviews: ${ratingValue} Stars on Google`, description, "/reviews"),
 };
 
 /**

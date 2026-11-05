@@ -6,13 +6,17 @@ import { BreadcrumbSchema } from "@/components/site/StructuredData";
 import { QuoteCta } from "@/components/site/QuoteCta";
 import { Reveal } from "@/components/site/Reveal";
 import { posts } from "@/lib/blog";
+import { socialTags } from "@/lib/seo";
+
+const description =
+  "Straight, jargon-free advice on Virginia inspection, oil changes, brakes, check-engine " +
+    "lights, batteries and tires from the team at TAB Motors in Arlington, VA.";
 
 export const metadata: Metadata = {
   title: { absolute: "Car Care Advice & Guides | TAB Motors Arlington" },
-  description:
-    "Straight, jargon-free advice on Virginia inspection, oil changes, brakes, check-engine " +
-    "lights, batteries and tires from the team at TAB Motors in Arlington, VA.",
+  description,
   alternates: { canonical: "/blog" },
+  ...socialTags("Car Care Advice & Guides | TAB Motors Arlington", description, "/blog"),
 };
 
 export default function BlogIndexPage() {

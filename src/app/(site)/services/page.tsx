@@ -8,13 +8,17 @@ import { IconPlate } from "@/components/site/IconPlate";
 import { Reveal } from "@/components/site/Reveal";
 import { services } from "@/lib/services";
 import { site } from "@/lib/site";
+import { socialTags } from "@/lib/seo";
+
+const description =
+  "Brakes, diagnostics, Virginia state inspection, emissions, A/C, transmission, " +
+    "electrical, hybrid and EV service. AAA Approved auto repair on Old Dominion Dr in Arlington.";
 
 export const metadata: Metadata = {
   title: "Auto Repair Services in Arlington, VA",
-  description:
-    "Brakes, diagnostics, Virginia state inspection, emissions, A/C, transmission, " +
-    "electrical, hybrid and EV service. AAA Approved auto repair on Old Dominion Dr in Arlington.",
+  description,
   alternates: { canonical: "/services" },
+  ...socialTags("Auto Repair Services in Arlington, VA | TAB Motors Arlington", description, "/services"),
 };
 
 export default function ServicesPage() {

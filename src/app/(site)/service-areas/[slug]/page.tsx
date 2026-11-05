@@ -10,6 +10,7 @@ import { ButtonAnchor, ButtonLink } from "@/components/ui/Button";
 import { areas, getArea } from "@/lib/areas";
 import { services } from "@/lib/services";
 import { ratingValue, reviewCount } from "@/lib/reviews";
+import { socialTags } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { telHref } from "@/lib/format";
 
@@ -30,6 +31,7 @@ export async function generateMetadata({
     title: { absolute: area.metaTitle },
     description: area.metaDescription,
     alternates: { canonical: `/service-areas/${area.slug}` },
+    ...socialTags(area.metaTitle, area.metaDescription, `/service-areas/${area.slug}`),
   };
 }
 

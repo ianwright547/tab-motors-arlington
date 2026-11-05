@@ -10,13 +10,17 @@ import { FaqSection } from "@/components/site/FaqSection";
 import { BlogTeasers } from "@/components/site/BlogTeasers";
 import { generalFaq } from "@/lib/faq";
 import { site } from "@/lib/site";
+import { socialTags } from "@/lib/seo";
+
+const description =
+  "An independent, AAA Approved auto repair shop on Old Dominion Dr in Arlington, VA. " +
+    "Official Virginia inspection station serving all makes, including hybrids and EVs.";
 
 export const metadata: Metadata = {
   title: "About Our Shop",
-  description:
-    "An independent, AAA Approved auto repair shop on Old Dominion Dr in Arlington, VA. " +
-    "Official Virginia inspection station serving all makes, including hybrids and EVs.",
+  description,
   alternates: { canonical: "/about" },
+  ...socialTags("About TAB Motors Arlington", description, "/about"),
 };
 
 export default function AboutPage() {

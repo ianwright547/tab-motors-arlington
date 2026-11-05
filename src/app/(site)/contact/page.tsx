@@ -10,13 +10,17 @@ import { generalFaq } from "@/lib/faq";
 import { services } from "@/lib/services";
 import { formatHoursSummary, site } from "@/lib/site";
 import { telHref } from "@/lib/format";
+import { socialTags } from "@/lib/seo";
+
+const description =
+  `${site.name}, ${site.address.oneLine}. Call ${site.phone.display}. ` +
+    `Open Monday to Friday 7:00 AM to 6:00 PM, and Saturday 7:00 AM to 3:00 PM.`;
 
 export const metadata: Metadata = {
   title: "Contact & Directions",
-  description:
-    `${site.name}, ${site.address.oneLine}. Call ${site.phone.display}. ` +
-    `Open Monday to Friday 7:00 AM to 6:00 PM, and Saturday 7:00 AM to 3:00 PM.`,
+  description,
   alternates: { canonical: "/contact" },
+  ...socialTags("Contact & Directions | TAB Motors Arlington", description, "/contact"),
 };
 
 export default function ContactPage() {

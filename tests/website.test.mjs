@@ -162,3 +162,65 @@ test("server validation still rejects invalid contact and a filled spam trap", (
     false,
   );
 });
+
+test("inspection checker matches the emissions statute and agency examples", async () => {
+  const { checkVehicle, oldestCoveredModelYear, qualifiedHybridMpg, addDays } =
+    await import("../src/lib/inspection-rules.ts");
+  const base = {
+    inProgramArea: true,
+    vehicleType: "car",
+    fuel: "gasoline",
+    modelYear: 2015,
+    weightClass: "up-to-8500",
+    titledNewInVirginia: true,
+    hybridMeetsMpg: false,
+  };
+  const emissions = (overrides, year = 2026) =>
+    checkVehicle({ ...base, ...overrides }, year).emissions.status;
+
+  // DMV's worked example: a 1994 model year is exempt on January 1, 2019.
+  assert.equal(emissions({ modelYear: 1994 }, 2019), "exempt");
+  assert.equal(emissions({ modelYear: 1995 }, 2019), "required");
+  assert.equal(oldestCoveredModelYear(2026), 2002);
+  assert.equal(emissions({ modelYear: 2001 }), "exempt");
+  assert.equal(emissions({ modelYear: 2002 }), "required");
+
+  // Current model year plus the three before it, unless titled elsewhere first.
+  assert.equal(emissions({ modelYear: 2023 }), "exempt");
+  assert.equal(emissions({ modelYear: 2022 }), "required");
+  assert.equal(emissions({ modelYear: 2024, titledNewInVirginia: false }), "check-dmv");
+
+  assert.equal(emissions({ fuel: "electric" }), "exempt");
+  assert.equal(emissions({ fuel: "hybrid" }), "required");
+  assert.equal(emissions({ fuel: "hybrid", hybridMeetsMpg: true }), "exempt");
+  assert.equal(qualifiedHybridMpg(2008), 48);
+  assert.equal(qualifiedHybridMpg(2015), 50);
+
+  assert.equal(emissions({ fuel: "diesel", modelYear: 1996 }), "exempt");
+  assert.equal(emissions({ fuel: "diesel", modelYear: 2010 }), "required");
+  assert.equal(emissions({ fuel: "diesel", modelYear: 2010, weightClass: "8501-10000" }), "exempt");
+  assert.equal(emissions({ weightClass: "8501-10000" }), "required");
+  assert.equal(emissions({ weightClass: "over-10000" }), "exempt");
+  assert.equal(emissions({ vehicleType: "motorcycle" }), "exempt");
+  assert.equal(emissions({ inProgramArea: false }), "exempt");
+
+  // Safety applies to everything, including an exempt EV.
+  assert.equal(checkVehicle({ ...base, fuel: "electric" }, 2026).safety.feeCap, "$20");
+  assert.equal(checkVehicle({ ...base, vehicleType: "motorcycle" }, 2026).safety.feeCap, "$12");
+
+  assert.equal(addDays("2026-11-04", 30), "2026-12-04");
+  assert.equal(addDays("2026-12-15", 60), "2027-02-13");
+});
+
+test("every article has a valid date, and related articles exist", () => {
+  const iso = /^\d{4}-\d{2}-\d{2}$/;
+  for (const post of posts) {
+    assert.match(post.published, iso, post.slug);
+    if (post.updated) assert.match(post.updated, iso, post.slug);
+  }
+  assert.equal(new Set(posts.map((post) => post.slug)).size, posts.length);
+  const slugs = new Set(posts.map((post) => post.slug));
+  for (const service of services) {
+    for (const slug of service.relatedPosts) assert.ok(slugs.has(slug), `${service.slug}: ${slug}`);
+  }
+});

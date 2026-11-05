@@ -105,6 +105,11 @@ export function Footer() {
                 </li>
               ))}
               <li>
+                <Link href="/tools/virginia-inspection-checker" className="hover:text-white hover:underline">
+                  Inspection checker
+                </Link>
+              </li>
+              <li>
                 <Link href="/quote" className="font-semibold text-brand-400 hover:text-brand-300">
                   Get a free quote
                 </Link>

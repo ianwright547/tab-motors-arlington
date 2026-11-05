@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
 import { telHref } from "@/lib/format";
+import { socialTags } from "@/lib/seo";
+
+const description =
+  `How ${site.name} handles the information you send through this website.`;
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: `How ${site.name} handles the information you send through this website.`,
+  description,
   alternates: { canonical: "/privacy" },
+  ...socialTags("Privacy Policy | TAB Motors Arlington", description, "/privacy"),
   // No robots override here on purpose — it inherits the launch switch from the
   // root layout. Setting index:true here would quietly defeat it.
 };

@@ -10,7 +10,7 @@ import { site } from "@/lib/site";
  */
 export const dynamic = "force-static";
 
-type Entry = { path: string; priority: number; changefreq: string };
+type Entry = { path: string; priority: number; changefreq: string; lastmod?: string };
 
 export function GET() {
   const entries: Entry[] = [
@@ -29,7 +29,13 @@ export function GET() {
       changefreq: "monthly",
     })),
     { path: "/blog", priority: 0.6, changefreq: "weekly" },
-    ...posts.map((p) => ({ path: `/blog/${p.slug}`, priority: 0.5, changefreq: "monthly" })),
+    ...posts.map((p) => ({
+      path: `/blog/${p.slug}`,
+      priority: 0.5,
+      changefreq: "monthly",
+      lastmod: p.updated ?? p.published,
+    })),
+    { path: "/tools/virginia-inspection-checker", priority: 0.7, changefreq: "yearly" },
     { path: "/about", priority: 0.5, changefreq: "yearly" },
     { path: "/contact", priority: 0.6, changefreq: "yearly" },
     { path: "/reviews", priority: 0.4, changefreq: "monthly" },
@@ -39,7 +45,7 @@ export function GET() {
   const urls = entries
     .map(
       (e) => `  <url>
-    <loc>${site.url}${e.path === "/" ? "" : e.path}</loc>
+    <loc>${site.url}${e.path === "/" ? "" : e.path}</loc>${e.lastmod ? `\n    <lastmod>${e.lastmod}</lastmod>` : ""}
     <changefreq>${e.changefreq}</changefreq>
     <priority>${e.priority.toFixed(1)}</priority>
   </url>`,

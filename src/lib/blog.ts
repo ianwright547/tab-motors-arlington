@@ -1,4 +1,5 @@
 import { site } from "./site";
+import { guides } from "./blog-guides";
 /** Auto-generated from our SEO content build (blog). */
 export type BlogPost = {
   slug: string;
@@ -7,11 +8,17 @@ export type BlogPost = {
   metaDescription: string;
   teaser: string;
   bodyHtml: string;
+  /** ISO date first published. */
+  published: string;
+  /** ISO date of the last substantive edit, shown instead of `published`. */
+  updated?: string;
 };
 
 export const posts: BlogPost[] = [
+  ...guides,
   {
     slug: "brake-pedal-pulsation",
+    published: "2026-09-12",
     category: "Brakes",
     title: "Why Your Steering Wheel Shakes When You Brake",
     metaDescription: "A pulsing brake pedal or a steering wheel that shakes under braking almost always traces back to the rotors. What causes it, what it costs you in stopping distance, and when to get it looked at.",
@@ -20,6 +27,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "car-ac-blowing-warm",
+    published: "2026-09-12",
     category: "Cooling & AC",
     title: "Car AC Blowing Warm Air? Here Is What Is Actually Going On",
     metaDescription: "Why a car's air conditioning blows warm, from refrigerant leaks and cooling fans to a stuck blend door, and why topping it off from a can rarely ends the problem.",
@@ -28,22 +36,27 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "virginia-state-inspection-guide",
+    published: "2026-08-17",
+    updated: "2026-11-04",
     category: "Inspections",
     title: "Virginia State Inspection: What Arlington Drivers Need to Know",
     metaDescription: "A plain-English guide to the Virginia state safety inspection for Arlington drivers, what's checked, what fails, and how to pass the first time.",
     teaser: "What the inspector actually checks, why cars fail, and how to read your sticker so you're never caught driving on an expired one.",
-    bodyHtml: `<p>Every vehicle registered in Virginia needs a valid safety-inspection sticker, and if you live in Arlington, that's a yearly ritual. Here's what the inspection actually involves, why cars fail, and how to walk out with a passing sticker the first time.</p>\n<h2>What the inspection checks</h2>\n<p>A certified inspector runs the Virginia State Police checklist, focused entirely on whether the car is safe to drive: brakes (pads, rotors, lines, parking brake), steering and suspension (ball joints, tie rods, play in the wheel), tires (tread depth and condition), all exterior lights, wipers and washer, horn, mirrors, windshield, seat belts, the fuel system, and exhaust security.</p>\n<h2>The most common reasons cars fail</h2>\n<ul>\n<li><strong>Worn brakes</strong>, thin pads or scored rotors. Catch these early with a <a href=\"/services/brake-repair\">free brake inspection</a>.</li>\n<li><strong>Tires</strong>, tread below 2/32\", or sidewall damage.</li>\n<li><strong>Lights</strong>, a single burned-out bulb will fail you (and it's a cheap fix).</li>\n<li><strong>Steering/suspension play</strong>, loose tie rods or ball joints. See <a href=\"/services/suspension-steering\">suspension &amp; steering</a>.</li>\n<li><strong>Wipers and windshield</strong>, torn blades or a crack in the driver's view.</li>\n</ul>\n<h2>How to read your sticker</h2>\n<p>The number in the center of the sticker is the month it expires; the surrounding numbers show the year. Your inspection is due by the <em>end</em> of that month. Driving on an expired sticker is a ticketable offense across Northern Virginia, so don't let it slide.</p>\n<h2>Passing the first time</h2>\n<p>If you already suspect a problem, a squeal from the brakes, a wiper that streaks, a light that's out, fix it before inspection day or choose a shop that can do both at once. At TAB Motors, if something fails we show you the part, quote it upfront, and can usually repair it the same day so you leave with a sticker instead of a rejection. Call ${site.phone.display}.</p>`,
+    bodyHtml: `<p>Every vehicle registered in Virginia needs a valid safety inspection sticker, and it has to be renewed every 12 months. Here's what the inspection involves, what it costs, why cars fail, and how to walk out with a passing sticker the first time.</p>\n<h2>What it costs and how long it lasts</h2>\n<p>The Virginia State Police set the maximum fee: $20 for most passenger vehicles and $12 for motorcycles. A new sticker lasts through the end of the month shown, 12 months out. The sticker shows the month and year, so you can check yours through the windshield in a couple of seconds.</p>\n<p>Don't confuse this with the emissions test. Safety is yearly and statewide. Emissions runs every two years, and only in Northern Virginia localities like Arlington. Not sure which you need? Our free <a href=\"/tools/virginia-inspection-checker\">Virginia inspection and emissions checker</a> takes about 20 seconds.</p>\n<h2>What the inspection checks</h2>\n<p>A certified inspector follows the State Police manual, and the whole inspection is about whether the car is safe to drive. The official process covers 24 steps, including:</p>\n<ul>\n<li><strong>Brakes,</strong> including the parking brake, pads, lines and hoses</li>\n<li><strong>Steering and suspension,</strong> such as ball joints, tie rods and play in the wheel</li>\n<li><strong>Tires, wheels and rims</strong></li>\n<li><strong>All exterior lights,</strong> including the rear license plate light and signals</li>\n<li><strong>Windshield, glass, wipers and mirrors</strong></li>\n<li><strong>Exhaust system,</strong> horn and under-hood items</li>\n<li><strong>Seats, seat belts and the airbag system</strong></li>\n<li><strong>Doors, fuel system and floor pan</strong></li>\n</ul>\n<h2>The most common reasons cars fail</h2>\n<ul>\n<li><strong>Worn brakes.</strong> Pads below 2/32 of an inch are rejected. Catch these early with a <a href=\"/services/brake-repair\">free brake inspection</a>.</li>\n<li><strong>Tires.</strong> Tread below 2/32 of an inch, a repair in the sidewall, or exposed cord.</li>\n<li><strong>Lights.</strong> A single burned-out bulb can fail you, and it's a cheap fix.</li>\n<li><strong>Steering and suspension play.</strong> Loose tie rods or ball joints. See <a href=\"/services/suspension-steering\">suspension and steering</a>.</li>\n<li><strong>Wipers and windshield.</strong> Torn blades, or a chip or crack over the size limit above the three-inch line.</li>\n<li><strong>Unapproved stickers and tint.</strong> Especially on cars that came from another state.</li>\n</ul>\n<p>We list the exact limits from the 2026 manual in <a href=\"/blog/failed-virginia-inspection\">what to do after a failed Virginia inspection</a>.</p>\n<h2>What if it fails?</h2>\n<p>You get a rejection sticker that's valid for 15 days beyond the inspection. Reinspection at the same station costs $1 during that window and usually only rechecks the failed items. A rejection sticker doesn't excuse a defect, so fix anything unsafe before you drive on it.</p>\n<h2>Passing the first time</h2>\n<p>Take five minutes before you come in. Have someone watch the lights while you work them, run the wipers, honk the horn, look at the tread and clear off any expired stickers. If you already suspect a problem, like a brake squeal or a wiper that streaks, fix it first or choose a shop that can do both at once.</p>\n<p>At TAB Motors, if something fails we show you the part and quote it up front, and the decision stays with you. For a visit, see our <a href=\"/services/virginia-state-inspection\">state inspection service</a> or call ${site.phone.display}.</p>\n<h2>Sources</h2>\n<ul>\n<li><a href=\"https://vsp.virginia.gov/public-safety-programs-center/vehicle-safety-inspection/\" rel=\"noopener\">Virginia State Police: Vehicle Safety Inspection</a></li>\n<li><a href=\"https://vsp.virginia.gov/wp-content/uploads/2026/05/Official-Motor-Vehicle-Safety-Inspection-Manual-2026.pdf\" rel=\"noopener\">Official Motor Vehicle Safety Inspection Manual 2026</a></li>\n<li><a href=\"https://law.lis.virginia.gov/vacode/title46.2/chapter10/section46.2-1158/\" rel=\"noopener\">Code of Virginia 46.2-1158</a></li>\n<li><a href=\"https://law.lis.virginia.gov/admincode/title19/agency30/chapter70/section60/\" rel=\"noopener\">19VAC30-70-60: Rejection stickers</a></li>\n</ul>`,
   },
   {
     slug: "virginia-emissions-test-explained",
+    published: "2026-08-17",
+    updated: "2026-11-04",
     category: "Inspections",
     title: "The Virginia Emissions Test, Explained (Arlington & Fairfax County)",
     metaDescription: "How the Northern Virginia emissions test works, why cars fail, and how to pass, for drivers in Arlington, Fairfax and the DC suburbs.",
     teaser: "Why Northern Virginia has an emissions test, what 'not ready' means, and the number-one reason cars fail (hint: it's that dashboard light).",
-    bodyHtml: `<p>If you live in Arlington, Fairfax, Alexandria or most of the inner DC suburbs, your car needs an emissions test every two years to renew its registration. It's separate from the safety inspection, and it trips up a lot of people. Here's how it works.</p>\n<h2>Why Northern Virginia has emissions testing</h2>\n<p>The inner suburbs are part of a federally designated air-quality region, so the Commonwealth requires periodic emissions testing to keep older, dirtier vehicles in check. Most gasoline vehicles registered here are in the program. Vehicles from the current model year and the three model years before it are exempt, and so are gasoline vehicles more than 25 model years old, which in 2026 means model year 2000 and older.</p>\n<h2>How the test works</h2>\n<p>For 1996-and-newer vehicles, it's an <strong>OBD test</strong>: a technician plugs into your car's computer and confirms the emissions systems are functioning, that there are no active fault codes, and that the \"readiness monitors\" have completed their self-checks.</p>\n<h2>Why cars fail, and \"not ready\"</h2>\n<p>The number-one failure is a <strong>check engine light</strong>. An illuminated light is an automatic fail, full stop. The second most common issue is a <strong>\"not ready\"</strong> status, usually because the battery was recently disconnected or the car's computer was reset, so the monitors haven't finished. The fix for \"not ready\" is simply to drive the car through a normal mix of city and highway driving for a few days so the monitors complete.</p>\n<h2>The usual culprits behind a check engine light</h2>\n<ul>\n<li>Failing oxygen (O2) sensor</li>\n<li>A loose or bad gas cap (an easy EVAP fix)</li>\n<li>Catalytic converter below efficiency</li>\n<li>Engine misfire from worn plugs or coils</li>\n</ul>\n<p>The advantage of testing at a full-service shop is simple: if your car fails, we <a href=\"/services/engine-diagnostics\">diagnose the cause</a>, repair it, and re-test, all in one place. Call TAB Motors at ${site.phone.display}.</p>`,
+    bodyHtml: `<p>If you live in Arlington, Fairfax, Alexandria or most of the inner DC suburbs, your car probably needs an emissions test every two years to renew its registration. It's separate from the safety inspection, and it trips up a lot of people. Here's how it works.</p>\n<h2>Who needs the test</h2>\n<p>The program covers vehicles garaged in Arlington, Fairfax, Loudoun, Prince William and Stafford counties, plus the cities of Alexandria, Fairfax, Falls Church, Manassas and Manassas Park. Most gasoline vehicles there are included. The main exemptions:</p>\n<ul>\n<li>Vehicles manufactured and titled for the current model year or the three before it. DMV may still require a test for newer vehicles first titled in another state.</li>\n<li>Gasoline vehicles at 25 model years old. In 2026, that means model year 2001 and older.</li>\n<li>Fully electric vehicles and qualified hybrids rated at 50 mpg or better in the city.</li>\n<li>Motorcycles and registered antique vehicles.</li>\n</ul>\n<p>Diesels are different: 1997 and newer models rated at 8,500 pounds or less are in the program. Our free <a href=\"/tools/virginia-inspection-checker\">Virginia inspection and emissions checker</a> sorts this out for your car. Your DMV renewal notice has the final word, so look for \"Emissions Inspection Required.\"</p>\n<h2>How the test works</h2>\n<p>On most 1996-and-newer vehicles, it's an <strong>OBD test</strong>. The inspector plugs into your car's computer and confirms the emissions systems are working, that no emissions fault codes have the check engine light commanded on, and that the \"readiness monitors\" have completed their self-checks. Gasoline vehicles also get an emissions component inspection and a visible smoke check. Older vehicles get a tailpipe test instead.</p>\n<p>The state caps the fee at $30. You can test up to 90 days before your registration expires and still qualify for a two-year renewal. The result goes to DMV electronically, so there's no paper to carry.</p>\n<h2>Why cars fail, and \"not ready\"</h2>\n<p>A <strong>check engine light</strong> commanded on is a failure under Virginia's rules. A check engine light that doesn't work at all is also a failure.</p>\n<p>A <strong>\"not ready\"</strong> result is different. It usually means the battery was recently disconnected or the computer was reset, so the monitors haven't finished. That's a rejection from testing rather than a failure, and you aren't charged the test fee. On 2001 and newer vehicles, two or more unfinished monitors means rejection. The fix is usually a few days of normal mixed driving.</p>\n<h2>The usual culprits behind a check engine light</h2>\n<ul>\n<li>Failing oxygen (O2) sensor</li>\n<li>A loose, bad or missing gas cap (an easy EVAP fix)</li>\n<li>Catalytic converter below efficiency</li>\n<li>Engine misfire from worn plugs or coils</li>\n</ul>\n<h2>If it fails</h2>\n<p>You get one free retest at the same station within 14 calendar days. Leave time to drive the car after the repair so the monitors can finish. We go through retests, monitor limits, repair waivers and DMV extensions in <a href=\"/blog/failed-virginia-emissions\">failed Virginia emissions: what to do next</a>.</p>\n<p>The advantage of testing at a full-service shop is simple: if your car fails, we <a href=\"/services/engine-diagnostics\">diagnose the cause</a>, repair it and retest it, all in one place. See our <a href=\"/services/virginia-emissions-inspection\">emissions inspection service</a> or call TAB Motors at ${site.phone.display}.</p>\n<h2>Sources</h2>\n<ul>\n<li><a href=\"https://www.deq.virginia.gov/air-energy/vehicle-emissions-air-check/how-do-i-get-an-inspection\" rel=\"noopener\">Virginia DEQ: How do I get an inspection?</a></li>\n<li><a href=\"https://www.dmv.virginia.gov/vehicles/registration/emissions\" rel=\"noopener\">Virginia DMV: Emissions Inspections</a></li>\n<li><a href=\"https://law.lis.virginia.gov/vacode/title46.2/chapter10/section46.2-1178/\" rel=\"noopener\">Code of Virginia 46.2-1178</a></li>\n<li><a href=\"https://law.lis.virginia.gov/admincode/title9/agency5/chapter91/section420/\" rel=\"noopener\">9VAC5-91-420: Emissions inspection procedure</a></li>\n</ul>`,
   },
   {
     slug: "how-often-oil-change",
+    published: "2026-08-17",
     category: "Maintenance",
     title: "How Often Should You Really Change Your Oil?",
     metaDescription: "The truth about oil-change intervals for modern cars, synthetic vs conventional, city driving, and why the old '3,000 miles' rule is mostly gone.",
@@ -52,6 +65,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "brake-warning-signs",
+    published: "2026-08-17",
     category: "Brakes",
     title: "6 Signs Your Brakes Need Attention Now",
     metaDescription: "Squealing, grinding, a soft pedal or a pull to one side, the warning signs your brakes need service before it becomes a safety issue or a bigger bill.",
@@ -60,14 +74,17 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "check-engine-light-meaning",
+    published: "2026-08-17",
+    updated: "2026-11-04",
     category: "Diagnostics",
     title: "Check Engine Light On? Here's What It Actually Means",
     metaDescription: "What triggers a check engine light, when it's an emergency, and why reading a code is not the same as diagnosing the problem.",
     teaser: "Steady vs. flashing, the gas-cap myth that's actually true, and why a $20 code reader can't tell you what's really wrong.",
-    bodyHtml: `<p>Few dashboard lights cause as much anxiety as the check engine light. The good news: it's often something minor. The important news: a few situations mean you should act now. Here's how to tell the difference.</p>\n<h2>Steady vs. flashing</h2>\n<p>A <strong>steady</strong> light means the car detected an issue you should get checked soon, but you can usually keep driving carefully. A <strong>flashing</strong> light is serious, it signals an active misfire that can dump raw fuel into and destroy your catalytic converter. If it's flashing, ease off the throttle and get to a shop; don't keep driving hard.</p>\n<h2>The gas-cap thing is real</h2>\n<p>One of the most common (and cheapest) triggers really is a loose, damaged, or missing gas cap, it creates an evaporative-system leak the car detects. Tighten it; if the light doesn't clear after a few drives, it's something else.</p>\n<h2>Why a code isn't a diagnosis</h2>\n<p>A parts-store scanner reads a trouble code like \"P0420,\" but that code points to a <em>symptom</em>, not a definitive part. P0420 might be a catalytic converter, or an upstream oxygen sensor, or an exhaust leak. Replacing the converter on a guess is how people waste hundreds of dollars. Proper <a href=\"/services/engine-diagnostics\">diagnosis</a> tests to find the actual cause.</p>\n<h2>Common causes</h2>\n<ul>\n<li>Oxygen or air-fuel sensor</li>\n<li>Loose gas cap / EVAP leak</li>\n<li>Misfire (spark plugs, coils)</li>\n<li>Catalytic converter</li>\n<li>Mass airflow sensor or vacuum leak</li>\n</ul>\n<p>And remember: a lit check engine light is an automatic <a href=\"/services/virginia-emissions-inspection\">emissions</a> failure, so it's worth sorting before renewal time. TAB Motors diagnoses it right the first time, call ${site.phone.display}.</p>`,
+    bodyHtml: `<p>Few dashboard lights cause as much anxiety as the check engine light. It's often something minor, but a few situations mean you should act now. Here's how to tell the difference, and what to do next.</p>\n<h2>Steady vs. flashing</h2>\n<p>A <strong>steady</strong> light means the car detected an issue you should get checked soon, but you can usually keep driving carefully. A <strong>flashing</strong> light is serious. It signals an active misfire that can dump raw fuel into your catalytic converter and destroy it. If it's flashing, ease off the throttle and get to a shop. Don't keep driving hard.</p>\n<p>Pull over promptly if the light comes with a red temperature warning, an oil pressure warning, a sudden loss of power or a burning smell. Those are stop-driving situations, whatever the engine light is doing.</p>\n<h2>What to do in the first five minutes</h2>\n<ol>\n<li>Notice how the car feels. Rough idle, hesitation or a new noise is useful information for your mechanic.</li>\n<li>Check that the gas cap is on and tight.</li>\n<li>Look at your gauges for temperature or oil warnings.</li>\n<li>If it's steady and the car feels normal, book a check within the next few days.</li>\n</ol>\n<h2>The gas-cap thing is real</h2>\n<p>One of the most common and cheapest triggers really is a loose, damaged or missing gas cap. It creates an evaporative-system leak that the car detects. Tighten it. If the light doesn't clear after a few drives, it's something else.</p>\n<h2>Why a code isn't a diagnosis</h2>\n<p>A parts-store scanner reads a trouble code like \"P0420,\" but that code points to a <em>symptom</em>, not a definitive part. P0420 might be a catalytic converter, an oxygen sensor or an exhaust leak. Replacing the converter on a guess is how people waste hundreds of dollars. Proper <a href=\"/services/engine-diagnostics\">diagnosis</a> tests to find the actual cause.</p>\n<h2>Common causes</h2>\n<ul>\n<li>Oxygen or air-fuel sensor</li>\n<li>Loose gas cap or EVAP leak</li>\n<li>Misfire from spark plugs or coils</li>\n<li>Catalytic converter</li>\n<li>Mass airflow sensor or vacuum leak</li>\n</ul>\n<h2>Don't just clear it before your test</h2>\n<p>A check engine light commanded on is a failure on the Virginia emissions test, so it's worth sorting before renewal time. Clearing the code isn't a shortcut. It resets the car's readiness monitors, so you're likely to get a \"not ready\" rejection instead, and the light returns if the fault is still there. Our guide to <a href=\"/blog/failed-virginia-emissions\">failed emissions tests</a> explains how that works, and the same light has nothing to do with your yearly <a href=\"/blog/virginia-state-inspection-guide\">safety inspection</a>.</p>\n<h2>What it will cost to find out</h2>\n<p>Diagnostic time varies with the problem, and a shop may charge for it as long as it tells you first. Under Virginia law, you can ask for a written estimate before repair work starts. See <a href=\"/blog/virginia-repair-shop-rights\">your rights at a Virginia repair shop</a>. TAB Motors diagnoses it right the first time. Call ${site.phone.display}.</p>`,
   },
   {
     slug: "car-battery-life-virginia",
+    published: "2026-08-17",
     category: "Batteries",
     title: "Why Car Batteries Die Early in Virginia's Weather",
     metaDescription: "Heat, cold, and short trips all shorten car battery life in the DC area. How long batteries really last here and the warning signs to catch first.",
@@ -76,6 +93,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "tpms-tire-pressure-light",
+    published: "2026-08-17",
     category: "Tires",
     title: "That Tire-Pressure Light: TPMS, Explained",
     metaDescription: "What the TPMS tire-pressure light means, why it comes on in cold weather, and when it signals a leak or a failing sensor.",
@@ -84,6 +102,7 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "timing-belt-vs-chain",
+    published: "2026-08-17",
     category: "Maintenance",
     title: "Timing Belt vs. Timing Chain: When to Replace",
     metaDescription: "Does your car have a timing belt or a chain, and when does it need service? Why a snapped belt can total an engine, and how to avoid it.",
@@ -96,6 +115,21 @@ export function getPost(slug: string): BlogPost | undefined {
   return posts.find((p) => p.slug === slug);
 }
 
+/** Same-topic articles first, so "Keep reading" isn't the newest three everywhere. */
 export function otherPosts(slug: string, limit = 3): BlogPost[] {
-  return posts.filter((p) => p.slug !== slug).slice(0, limit);
+  const category = getPost(slug)?.category;
+  const others = posts.filter((p) => p.slug !== slug);
+  return [
+    ...others.filter((p) => p.category === category),
+    ...others.filter((p) => p.category !== category),
+  ].slice(0, limit);
+}
+
+export function formatPostDate(isoDate: string): string {
+  return new Date(`${isoDate}T12:00:00Z`).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  });
 }

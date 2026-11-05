@@ -6,13 +6,17 @@ import { uploadsEnabled } from "@/lib/uploads";
 import { formatHoursSummary, site } from "@/lib/site";
 import { telHref } from "@/lib/format";
 import { ButtonAnchor } from "@/components/ui/Button";
+import { socialTags } from "@/lib/seo";
+
+const description =
+  "Tell us about your vehicle and what it needs, and we'll come back with a quote. " +
+    "Free, no obligation. AAA Approved auto repair in Arlington, VA.";
 
 export const metadata: Metadata = {
   title: "Get a Free Quote",
-  description:
-    "Tell us about your vehicle and what it needs, and we'll come back with a quote. " +
-    "Free, no obligation. AAA Approved auto repair in Arlington, VA.",
+  description,
   alternates: { canonical: "/quote" },
+  ...socialTags("Get a Free Quote | TAB Motors Arlington", description, "/quote"),
 };
 
 export default function QuotePage() {

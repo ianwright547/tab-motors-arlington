@@ -20,6 +20,7 @@ import { getService, otherServices, services } from "@/lib/services";
 import { getPost } from "@/lib/blog";
 import { formatHoursSummary, site } from "@/lib/site";
 import { telHref } from "@/lib/format";
+import { socialTags } from "@/lib/seo";
 
 /** One static page per service, generated at build time. */
 export function generateStaticParams() {
@@ -42,6 +43,7 @@ export async function generateMetadata({
     title: { absolute: service.metaTitle },
     description: service.metaDescription,
     alternates: { canonical: `/services/${service.slug}` },
+    ...socialTags(service.metaTitle, service.metaDescription, `/services/${service.slug}`, "website", true),
   };
 }
 

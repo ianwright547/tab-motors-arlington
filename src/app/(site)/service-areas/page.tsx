@@ -6,13 +6,17 @@ import { BreadcrumbSchema } from "@/components/site/StructuredData";
 import { QuoteCta } from "@/components/site/QuoteCta";
 import { Reveal } from "@/components/site/Reveal";
 import { areas } from "@/lib/areas";
+import { socialTags } from "@/lib/seo";
+
+const description =
+  "TAB Motors serves Arlington, McLean, Falls Church, Alexandria, Vienna, Fairfax and " +
+    "Washington, DC with AAA Approved auto repair, Virginia inspection, tires and diagnostics.";
 
 export const metadata: Metadata = {
-  title: "Service Areas | Auto Repair Across Arlington & Northern Virginia",
-  description:
-    "TAB Motors serves Arlington, McLean, Falls Church, Alexandria, Vienna, Fairfax and " +
-    "Washington, DC with AAA Approved auto repair, Virginia inspection, tires and diagnostics.",
+  title: { absolute: "Service Areas in Arlington & Northern Virginia | TAB Motors" },
+  description,
   alternates: { canonical: "/service-areas" },
+  ...socialTags("Service Areas | TAB Motors Arlington", description, "/service-areas"),
 };
 
 export default function ServiceAreasPage() {

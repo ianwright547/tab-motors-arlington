@@ -6,8 +6,9 @@ import { PageHero } from "@/components/site/PageHero";
 import { BreadcrumbSchema } from "@/components/site/StructuredData";
 import { QuoteCta } from "@/components/site/QuoteCta";
 import { FaqSection } from "@/components/site/FaqSection";
-import { getPost, otherPosts, posts } from "@/lib/blog";
+import { formatPostDate, getPost, otherPosts, posts } from "@/lib/blog";
 import { generalFaq } from "@/lib/faq";
+import { socialTags } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -22,10 +23,13 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) return {};
+  // Long headlines would have the brand cut off mid-word in results anyway.
+  const branded = `${post.title} | ${site.name}`;
   return {
-    title: post.title,
+    title: branded.length > 62 ? { absolute: post.title } : post.title,
     description: post.metaDescription,
     alternates: { canonical: `/blog/${post.slug}` },
+    ...socialTags(post.title, post.metaDescription, `/blog/${post.slug}`, "article"),
   };
 }
 
@@ -48,6 +52,10 @@ export default async function BlogPostPage({
     headline: post.title,
     description: post.metaDescription,
     articleSection: post.category,
+    datePublished: post.published,
+    dateModified: post.updated ?? post.published,
+    image: `${site.url}/opengraph-image`,
+    author: { "@id": `${site.url}#business` },
     // Reference the single business node published on the home page rather
     // than restating the business here. One entity, one place it can drift.
     publisher: { "@id": `${site.url}#business` },
@@ -67,7 +75,11 @@ export default async function BlogPostPage({
 
       <div className="container-page grid gap-10 py-14 md:py-16 lg:grid-cols-[1.7fr_1fr] lg:gap-14">
         <div>
-          <p className="text-lg font-medium leading-relaxed text-ink-700">{post.teaser}</p>
+          <p className="text-sm font-semibold text-ink-600">
+            {post.updated ? "Updated" : "Published"} {formatPostDate(post.updated ?? post.published)}
+            {" · "}By the team at {site.name}
+          </p>
+          <p className="mt-4 text-lg font-medium leading-relaxed text-ink-700">{post.teaser}</p>
           <article
             className="prose-shop mt-8"
             dangerouslySetInnerHTML={{ __html: post.bodyHtml }}
