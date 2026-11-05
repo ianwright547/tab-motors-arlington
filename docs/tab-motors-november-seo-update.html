@@ -1,0 +1,110 @@
+<title>TAB Motors November SEO Update</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Layout: a shop work order. One narrow column, status tags on each line item, totals up top. */
+:root {
+  --bg: #fbfafa; --panel: #ffffff; --ink: #171314; --muted: #625a5c; --line: #e3dddf;
+  --red: #c8141f; --done: #1c6b41; --wait: #93590a;
+  --display: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  --body: "Source Sans 3", "Segoe UI", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #151213; --panel: #1f1b1c; --ink: #f4f0f1; --muted: #b0a7a9; --line: #393334;
+  --red: #ff6670; --done: #6fd09b; --wait: #edb45f; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #151213; --panel: #1f1b1c; --ink: #f4f0f1; --muted: #b0a7a9; --line: #393334;
+  --red: #ff6670; --done: #6fd09b; --wait: #edb45f; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font: 400 17px/1.55 var(--body); }
+.wrap { max-width: 760px; margin: 0 auto; padding-block: 40px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2 { font-family: var(--display); text-transform: uppercase; line-height: 1.05; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.3rem, 7vw, 3.4rem); }
+h2 { font-size: 1.65rem; margin-top: 44px; padding-top: 12px; border-top: 3px solid var(--ink); }
+.kicker { color: var(--red); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: .82rem; margin: 0 0 8px; }
+.lead { font-size: 1.15rem; margin: 16px 0 0; }
+p { margin: 12px 0 0; }
+.note { color: var(--muted); font-size: .94rem; }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 16px; }
+.stats div { background: var(--panel); padding: 14px; min-width: 0; }
+.stats b { display: block; font: 700 2rem/1 var(--display); font-variant-numeric: tabular-nums; }
+.stats span { color: var(--muted); font-size: .88rem; line-height: 1.25; display: block; margin-top: 6px; }
+ul.items { list-style: none; margin: 14px 0 0; padding: 0; border-top: 1px solid var(--line); }
+ul.items li { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.tag { font-weight: 700; font-size: .78rem; letter-spacing: .05em; text-transform: uppercase; padding-top: 3px; }
+.tag.done { color: var(--done); } .tag.fixed { color: var(--red); } .tag.wait { color: var(--wait); }
+ul.items strong { display: block; }
+.scroll { overflow-x: auto; margin-top: 14px; }
+table { border-collapse: collapse; width: 100%; min-width: 440px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 9px 10px 9px 0; border-bottom: 1px solid var(--line); }
+th { font-size: .82rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+td.n, th.n { text-align: right; }
+a { color: var(--red); }
+a:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+ol.asks { margin: 14px 0 0; padding-left: 22px; display: grid; gap: 10px; }
+@media (max-width: 560px) {
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  ul.items li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}
+</style>
+
+<main class="wrap">
+  <p class="kicker">SEO update · November 4, 2026</p>
+  <h1>TAB Motors Arlington</h1>
+  <p class="lead">Seven new in-depth guides, a free inspection checker and a round of technical fixes are live on your site today. The next big lever is links and listings, and a few of those need your input.</p>
+
+  <h2>Where you stand today</h2>
+  <div class="stats">
+    <div><b>5,690</b><span>Times seen on Google since August 6</span></div>
+    <div><b>91</b><span>Clicks from Google search</span></div>
+    <div><b>29.4</b><span>Average position</span></div>
+    <div><b>8</b><span>External links, all directories</span></div>
+  </div>
+  <p class="note">From Google Search Console, August 6 to November 2, 2026. These numbers cover website search only. Calls from your Google map listing are separate. This work went live today, so none of it is reflected yet.</p>
+
+  <h2>Already close to page one</h2>
+  <p>These searches already show your site, so they are the ones to watch first.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Search</th><th class="n">Times seen</th><th class="n">Position</th></tr></thead>
+    <tbody>
+      <tr><td>oil change near me</td><td class="n">42</td><td class="n">7.4</td></tr>
+      <tr><td>brake repair near me</td><td class="n">88</td><td class="n">9.5</td></tr>
+      <tr><td>car inspection</td><td class="n">65</td><td class="n">18.1</td></tr>
+      <tr><td>vienna auto services</td><td class="n">38</td><td class="n">27.4</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>What we finished</h2>
+  <ul class="items">
+    <li><span class="tag done">Live</span><div><strong>7 new long-form guides</strong>Winter car care, moving to Arlington with a car, failed safety inspections, failed emissions tests, your rights at a Virginia repair shop, dealer versus independent warranty rules, and hybrid and EV care. Each one cites Virginia law or state agencies.</div></li>
+    <li><span class="tag done">Live</span><div><strong>Free Virginia inspection and emissions checker</strong>Drivers enter their vehicle and see what it needs, and new residents get their DMV and county deadlines. Civic groups and relocation teams have a reason to link to it. <a href="https://tabmotorsarlington.com/tools/virginia-inspection-checker">Try it here</a>.</div></li>
+    <li><span class="tag done">Live</span><div><strong>3 thin articles rewritten</strong>State inspection, emissions and check engine light.</div></li>
+    <li><span class="tag done">Live</span><div><strong>Stronger internal linking</strong>Every service page now points to related guides, and articles recommend others on the same topic.</div></li>
+    <li><span class="tag done">Live</span><div><strong>Technical cleanup</strong>Every page now has its own link preview. Before, they all identified as the home page. We also added publish dates, article details for search engines and a summary file for AI assistants.</div></li>
+    <li><span class="tag fixed">Corrected</span><div><strong>Emissions exemption year</strong>The site said model year 2000 and older were exempt in 2026. Under state law it is 2001 and older.</div></li>
+    <li><span class="tag fixed">Corrected</span><div><strong>Google review count</strong>The site said 75. Google showed 72 today, so the site now says 72.</div></li>
+    <li><span class="tag done">Sent</span><div><strong>Pages submitted to search engines</strong>5 priority pages are in Google's crawl queue, and 54 URLs went to Bing and other IndexNow engines. This speeds up discovery. It does not guarantee a ranking.</div></li>
+  </ul>
+
+  <h2>Links and listings</h2>
+  <p>Good links come from other people's websites, so we can't publish them ourselves. No new backlinks exist yet. We avoided buying links on purpose: Google ran spam updates in March, June, August and September this year, and those links can stop counting or put the site at risk.</p>
+  <ul class="items">
+    <li><span class="tag wait">Ready</span><div><strong>3 outreach emails drafted</strong>Langston Boulevard Alliance, ARLnow and the Old Dominion Citizens Association. None have been sent yet.</div></li>
+    <li><span class="tag wait">Ready</span><div><strong>Target list of 12 local link sources</strong>Includes the Arlington Chamber, nearby civic associations, Fort Myer relocation services and local sponsorships.</div></li>
+    <li><span class="tag wait">Needs you</span><div><strong>ARLnow's "Best Mechanic in Arlington" list</strong>TAB isn't on it, and shops in Cherrydale and Virginia Square are. When the next poll opens, ask your customers to vote. Local expert surveys rate lists like this as the top factor for showing up in AI answers.</div></li>
+    <li><span class="tag wait">Needs you</span><div><strong>Listing corrections</strong>AAA still shows you closed Saturdays and a different street address. Yelp lists you as "Exxon" at 3 stars, mixing gas station reviews with repair. Facebook spells the name "Tabb".</div></li>
+  </ul>
+
+  <h2>What we need from you</h2>
+  <ol class="asks">
+    <li><strong>Are you connected to tabmotors.com?</strong> It lists your address and phone number next to the DC shop, but your website says you aren't affiliated with similarly named businesses. It also shows different Saturday hours and a 2-year warranty. If you are connected, a link from that site would be the fastest strong link available.</li>
+    <li><strong>What is the exact business name?</strong> The site says "TAB Motors Arlington" and Google says "TAB Motors Auto Repair Arlington". We need one name everywhere.</li>
+    <li><strong>Call your AAA contact</strong> to fix your hours, address and website. Correct hours: Monday to Friday 7 to 6, Saturday 7 to 3.</li>
+    <li><strong>Are you a DEQ Certified Emissions Repair Facility?</strong> If so, we will say it on the site, since only certified repairs count toward an emissions waiver.</li>
+    <li><strong>What high-voltage hybrid and EV work do you do?</strong> The guide tells owners to call until we can be more specific.</li>
+    <li><strong>Keep asking for Google reviews.</strong> For your map listing, reviews and photos will do more than any article.</li>
+  </ol>
+
+  <h2>What to expect</h2>
+  <p>Google decides what ranks and when, so we can't promise positions. New pages usually take weeks to be indexed and months to settle. We will compare these same numbers each month, and the December update will show how the new pages are doing. Google Posts are coming separately.</p>
+</main>

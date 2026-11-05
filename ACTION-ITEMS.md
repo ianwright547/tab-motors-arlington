@@ -6,6 +6,9 @@ blocked by the website build, and none of them require me. Kept separate from
 
 Order below is roughly by value.
 
+The current citation fixes, link targets and owner questions are in
+[docs/seo-backlink-kit-2026-11-04.md](docs/seo-backlink-kit-2026-11-04.md). It supersedes the older listing notes below where they differ.
+
 ---
 
 ## 1. Fix the AAA listing hours ⚠️ costing business today
