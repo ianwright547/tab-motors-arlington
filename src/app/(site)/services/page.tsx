@@ -76,7 +76,15 @@ export default function ServicesPage() {
             and ask. We&apos;ll tell you straight if it&apos;s not a job for us.
           </p>
           <p className="mt-3 text-sm text-ink-500">
-            We don&apos;t offer towing or detailing. Repair work only.
+            TAB Motors handles repair work and does not offer towing. For car detailing
+            at this location, visit{" "}
+            <a
+              href="https://www.pristineautodetailingarlington.com/"
+              className="font-semibold text-brand-700 underline underline-offset-2"
+            >
+              Pristine Auto Detailing Arlington
+            </a>
+            .
           </p>
         </div>
       </section>
