@@ -122,6 +122,60 @@ export default async function ServicePage({
 
       <div className="container-page grid gap-10 py-14 md:py-16 lg:grid-cols-[1.5fr_1fr] lg:gap-14">
         <div>
+          {service.slug === "virginia-emissions-inspection" && (
+            <section
+              aria-labelledby="failed-emissions-help"
+              className="mb-8 rounded-xl border border-brand-200 bg-brand-50 p-5 sm:p-7"
+            >
+              <h2
+                id="failed-emissions-help"
+                className="font-display text-2xl font-bold uppercase tracking-tight"
+              >
+                Failed emissions or have a check engine light?
+              </h2>
+              <p className="mt-3 leading-relaxed text-ink-700">
+                Bring your test report and tell us about any warning lights or
+                recent repairs. Our{" "}
+                <Link
+                  href="/services/engine-diagnostics"
+                  className="font-semibold text-brand-700 underline underline-offset-4"
+                >
+                  engine diagnostics service in Arlington
+                </Link>{" "}
+                helps identify what needs attention before you approve a repair.
+                Diagnostic and repair work is separate from the emissions test.
+              </p>
+              <div className="mt-5">
+                <ButtonLink href="/quote?service=engine-diagnostics">
+                  Request diagnostic help
+                </ButtonLink>
+              </div>
+            </section>
+          )}
+          {service.slug === "brake-repair" && (
+            <section
+              aria-labelledby="brake-quote-details"
+              className="mb-8 rounded-xl border border-brand-200 bg-brand-50 p-5 sm:p-7"
+            >
+              <h2
+                id="brake-quote-details"
+                className="font-display text-2xl font-bold uppercase tracking-tight"
+              >
+                Tell us what happens when you brake
+              </h2>
+              <p className="mt-3 leading-relaxed text-ink-700">
+                Include your vehicle’s year, make and model, and whether you
+                hear a noise, feel a vibration or notice a change in the pedal.
+                Those details help the shop plan the inspection. We check the
+                cause and quote any repair before work starts.
+              </p>
+              <div className="mt-5">
+                <ButtonLink href="/quote?service=brake-repair">
+                  Request a brake repair quote
+                </ButtonLink>
+              </div>
+            </section>
+          )}
           {/* What you get — our service highlights; inspections have a visit summary. */}
           {service.inspection ? (
             <section
